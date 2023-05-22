@@ -134,6 +134,9 @@ function go() {
 
   // Run algorithm
   switch (algorithm) {
+    case "Linear Search":
+      linearSearch(Number(targetAsString));
+      break;
     case "Binary Search":
       binarySearch(Number(targetAsString));
       break;

@@ -1,0 +1,7 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: var(--header-border-height) darkgrey solid;
+  height: var(--header-height);
+}

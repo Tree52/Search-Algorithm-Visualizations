@@ -1,0 +1,85 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  user-select: none;
+  outline: none;
+}
+
+:root {
+  --button-width: 100px;
+  --header-height: 80px;
+  --header-border-height: 2px;
+  --footer-height: 80px;
+  --result-height: 100px;
+  --li-width: 200px;
+  --li-height: 50px;
+}
+
+html,
+body {
+  background-color: rgb(18, 18, 18);
+  margin: 0px;
+  height: 100%;
+}
+
+input[type="text"] {
+  appearance: textfield;
+  color: black;
+  width: var(--button-width);
+  border: none;
+  text-align: center;
+  margin: 0px 2px;
+  padding: 0px;
+}
+
+input[type="text"]:focus::placeholder {
+  color: transparent;
+}
+
+button {
+  background-color: rgb(60, 60, 60);
+  cursor: pointer;
+  margin: 0px 2px;
+  border: none;
+  padding: 0px;
+  width: var(--button-width);
+}
+
+button:active {
+  background-color: rgb(18, 18, 18);
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  float: left;
+  width: var(--li-width);
+  height: var(--li-height);
+  position: relative;
+  margin: 0px 2px;
+}
+
+label {
+  background-color: rgb(60, 60, 60);
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  text-align: center;
+  line-height: var(--li-height);
+}
+
+label:active {
+  background-color: rgb(18, 18, 18);
+}
+
+input[type="radio"]:checked + label {
+  background: white;
+  color: rgb(60, 60, 60);
+}

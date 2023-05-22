@@ -1,0 +1,10 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  height: var(--footer-height);
+}
+
+#expand {
+  width: 26px;
+  margin-left: -4px;
+}

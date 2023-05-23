@@ -14,27 +14,18 @@ function removeTile() {
     numTiles--;
   } else {
     for (let i = 0; i < valueAsString.length; i++) {
-      let tileRemovedFlag = false;
       let arrLength = arr.length;
-      // Find number
       for (let j = 0; j < arrLength; j++) {
-        // Delete element(s)
-        if (Number(valueAsString[i]) === arr[j] && tileRemovedFlag === false) {
-          const tile = document.getElementById("tile" + j);
-          tile.remove();
+        if (Number(valueAsString[i]) === arr[j]) {
           arr.splice(j, 1);
           numTiles--;
-          tileRemovedFlag = true;
-          continue;
-        }
-
-        // Update tile IDs
-        if (tileRemovedFlag === true) {
-          document.getElementById("tile" + j).id = "tile" + (j - 1);
+          break;
         }
       }
     }
   }
+
+  updateIDs();
 
   if (numTiles === 0) {
     disableButton("-");
@@ -73,35 +64,6 @@ function newTile() {
   }
 }
 
-// function newEmptyTile() {
-//   const tile = document.createElement("div");
-//   tile.className = "empty-tile";
-//   tile.id = "tile" + numTiles;
-//   document.getElementById("content").append(tile);
-//   arr.push(numTiles);
-//   numTiles++;
-// }
-
-function expand() {
-  document.getElementById("arr-numbox").placeholder = "#, #, ...";
-  document.getElementById("arr-numbox").style.width = "400px";
-  document.getElementById("expand").classList.add("fa-flip-horizontal");
-  document.getElementById("expand").onclick = function () {
-    retract();
-  };
-  isExpand = 0;
-}
-
-function retract() {
-  document.getElementById("arr-numbox").placeholder = "#";
-  document.getElementById("arr-numbox").style.width = "100px";
-  document.getElementById("expand").classList.remove("fa-flip-horizontal");
-  document.getElementById("expand").onclick = function () {
-    expand();
-  };
-  isExpand = -1;
-}
-
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -134,6 +96,9 @@ function go() {
 
   // Run algorithm
   switch (algorithm) {
+    case "Sentinel Search":
+      sentinelSearch(Number(targetAsString));
+      break;
     case "Linear Search":
       linearSearch(Number(targetAsString));
       break;
@@ -152,17 +117,7 @@ function go() {
 function sort() {
   arr = mergeSort(arr);
 
-  // Temporarily clear content div
-  clearDiv("content");
-
-  // Push sorted array
-  for (let i = 0; i < arr.length; i++) {
-    const tile = document.createElement("div");
-    tile.className = "tile";
-    tile.id = "tile" + i;
-    tile.innerHTML = arr[i];
-    document.getElementById("content").append(tile);
-  }
+  updateIDs();
 }
 
 function clearDiv(id) {
@@ -188,13 +143,24 @@ function enableButton(id) {
 function reset() {
   clearDiv("result");
 
-  color("606060", 0, (numTiles - 1));
-  
+  color("606060", 0, numTiles - 1);
+
   enableButton("+");
   enableButton("-");
   enableButton("go");
 
   if (numTiles === 0) {
     disableButton("-");
+  }
+}
+
+function updateIDs() {
+  clearDiv("content");
+  for (let i = 0; i < arr.length; i++) {
+    const tile = document.createElement("div");
+    tile.className = "tile";
+    tile.id = "tile" + i;
+    tile.innerHTML = arr[i];
+    document.getElementById("content").append(tile);
   }
 }

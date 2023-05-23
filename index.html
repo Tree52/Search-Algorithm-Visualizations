@@ -15,52 +15,50 @@
 
   <body>
     <header>
-      <div class="header">
-        <ul class="algorithms">
-          <li>
-            <input type="radio" id="linear" name="algo" value="Linear Search" />
-            <label for="linear">Linear</label>
-          </li>
-          <li>
-            <input type="radio" id="binary" name="algo" value="Binary Search" checked="checked" />
-            <label for="binary">Binary</label>
-          </li>
-          <li>
-            <input type="radio" id="fib" name="algo" value="Fibonacci Search" />
-            <label for="fib">Fibonacci</label>
-          </li>
-          <li>
-            <input type="radio" id="stupid" name="algo" value="Stupid Search" />
-            <label for="stupid">Stupid</label>
-          </li>
-        </ul>
-      </div>
+      <ul>
+        <li>
+          <input type="radio" id="linear" name="algo" value="Linear Search" />
+          <label for="linear">Linear</label>
+        </li>
+        <li>
+          <input type="radio" id="sentinel" name="algo" value="Sentinel Search" />
+          <label for="sentinel">Sentinel</label>
+        </li>
+        <li>
+          <input type="radio" id="binary" name="algo" value="Binary Search" checked="checked" />
+          <label for="binary">Binary</label>
+        </li>
+        <li>
+          <input type="radio" id="fib" name="algo" value="Fibonacci Search" />
+          <label for="fib">Fibonacci</label>
+        </li>
+        <li>
+          <input type="radio" id="stupid" name="algo" value="Stupid Search" />
+          <label for="stupid">Stupid</label>
+        </li>
+      </ul>
     </header>
 
-    <div class="content" id="content">
+    <div id="content">
 
     </div>
 
-    <div class="result" id="result">
+    <div id="result">
 
     </div>
 
-    <footer class="footer">
-      <button class="footer-button" id="-"  onclick="removeTile()" style="background-color: red;" disabled>
+    <footer>
+      <button id="-" onclick="removeTile()" style="background-color: red;" disabled>
         -
       </button>
       
-      <input class="fa-solid number-input" id="arr-numbox" type="text" placeholder="#">
-
-      <button class="fa-solid fa-arrow-right fa-2xs" id="expand" onclick="expand()">
-
-      </button>
+      <input class="fa-solid" id="arr-numbox" type="text" placeholder="#, #, ...">
       
-      <button class="footer-button" id="+" onclick="newTile()">
+      <button id="+" onclick="newTile()">
         +
       </button>
 
-      <button class="footer-button" type="submit" id="go" onclick="go()">
+      <button type="submit" id="go" onclick="go()">
         Go
       </button>
 
@@ -68,7 +66,7 @@
         
       </button>
 
-      <input class="fa-solid number-input" id="target-numbox" type="text" placeholder="&#xf140">
+      <input class="fa-solid" id="target-numbox" type="text" placeholder="&#xf140">
     </footer>
 
     <script src="https://kit.fontawesome.com/3b5c541e5c.js" crossorigin="anonymous"></script>
@@ -76,6 +74,7 @@
     <script src="script/mergeSort.js"></script>
     <script src="script/color.js"></script>
     <script src="script/linear.js"></script>
+    <script src="script/sentinel.js"></script>
     <script src="script/binary.js"></script>
     <script src="script/fib.js"></script>
     <script src="script/stupid.js"></script>

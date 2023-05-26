@@ -1,4 +1,3 @@
-let numTiles = 0;
 let arr = [];
 
 function removeTile() {
@@ -8,17 +7,15 @@ function removeTile() {
     .split(",");
 
   if (valueAsString[0] === "") {
-    const tile = document.getElementById("tile" + (numTiles - 1));
+    const tile = document.getElementById("tile" + (arr.length - 1));
     tile.remove();
     arr.pop();
-    numTiles--;
   } else {
     for (let i = 0; i < valueAsString.length; i++) {
       let arrLength = arr.length;
       for (let j = 0; j < arrLength; j++) {
         if (Number(valueAsString[i]) === arr[j]) {
           arr.splice(j, 1);
-          numTiles--;
           break;
         }
       }
@@ -27,13 +24,13 @@ function removeTile() {
 
   updateIDs();
 
-  if (numTiles === 0) {
+  if (arr.length === 0) {
     disableButton("-");
   }
 }
 
 function newTile() {
-  if (numTiles === 0) {
+  if (arr.length === 0) {
     enableButton("-");
   }
 
@@ -43,12 +40,16 @@ function newTile() {
     .split(",");
 
   for (let i = 0; i < valueAsString.length; i++) {
+    if (isNaN(Number(valueAsString[i]))) {
+      continue;
+    }
+
     // Create new tile
     const tile = document.createElement("div");
     tile.className = "tile";
 
-    // numTiles is being used for the index here
-    tile.id = "tile" + numTiles;
+    // arr.length is being used for the index here
+    tile.id = "tile" + arr.length;
 
     if (valueAsString[0] === "") {
       let randNum = Math.floor(Math.random() * 100);
@@ -60,7 +61,6 @@ function newTile() {
     }
 
     document.getElementById("content").append(tile);
-    numTiles++;
   }
 }
 
@@ -105,6 +105,12 @@ function go() {
     case "Binary Search":
       binarySearch(Number(targetAsString));
       break;
+    case "One-Sided Search":
+      oneSidedSearch(Number(targetAsString));
+      break;
+    case "Meta Search":
+      metaSearch(Number(targetAsString));
+      break;
     case "Fibonacci Search":
       fibSearch(Number(targetAsString));
       break;
@@ -143,13 +149,13 @@ function enableButton(id) {
 function reset() {
   clearDiv("result");
 
-  color("606060", 0, numTiles - 1);
+  color("rgb(60, 60, 60)", 0, arr.length - 1);
 
   enableButton("+");
   enableButton("-");
   enableButton("go");
 
-  if (numTiles === 0) {
+  if (arr.length === 0) {
     disableButton("-");
   }
 }
@@ -163,4 +169,9 @@ function updateIDs() {
     tile.innerHTML = arr[i];
     document.getElementById("content").append(tile);
   }
+}
+
+function copyToClipboard() {
+  document.getElementById("result").innerHTML = "Array copied to clipboard";
+  navigator.clipboard.writeText(arr);
 }

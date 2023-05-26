@@ -17,7 +17,7 @@
     <header>
       <ul>
         <li>
-          <input type="radio" id="linear" name="algo" value="Linear Search" />
+          <input type="radio" id="linear" name="algo" value="Linear Search" checked="checked" />
           <label for="linear">Linear</label>
         </li>
         <li>
@@ -25,8 +25,16 @@
           <label for="sentinel">Sentinel</label>
         </li>
         <li>
-          <input type="radio" id="binary" name="algo" value="Binary Search" checked="checked" />
+          <input type="radio" id="binary" name="algo" value="Binary Search" />
           <label for="binary">Binary</label>
+        </li>
+        <li>
+          <input type="radio" id="oneSided" name="algo" value="One-Sided Search" />
+          <label for="oneSided">One-Sided</label>
+        </li>
+        <li>
+          <input type="radio" id="meta" name="algo" value="Meta Search" />
+          <label for="meta">Meta</label>
         </li>
         <li>
           <input type="radio" id="fib" name="algo" value="Fibonacci Search" />
@@ -58,6 +66,10 @@
         +
       </button>
 
+      <button class="fa-solid fa-clipboard" id="copy" onclick="copyToClipboard()">
+
+      </button>
+      
       <button type="submit" id="go" onclick="go()">
         Go
       </button>
@@ -76,6 +88,8 @@
     <script src="script/linear.js"></script>
     <script src="script/sentinel.js"></script>
     <script src="script/binary.js"></script>
+    <script src="script/oneSided.js"></script>
+    <script src="script/meta.js"></script>
     <script src="script/fib.js"></script>
     <script src="script/stupid.js"></script>
   </body>

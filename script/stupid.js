@@ -4,8 +4,8 @@ async function stupidSearch(target) {
   while (1) {
     count++;
     document.getElementById("result").innerHTML = count;
-    let i = Math.floor(Math.random() * numTiles);
-    makeGreen("tile" + i);
+    let i = Math.floor(Math.random() * arr.length);
+    color("green", i, i);
     await sleep(500);
 
     if (target === arr[i]) {
@@ -15,7 +15,7 @@ async function stupidSearch(target) {
       return;
     }
 
-    make606060("tile" + i);
+    color("rgb(60, 60, 60)", i, i);
     await sleep(500);
   }
 }

@@ -4,16 +4,15 @@
   font-weight: bold;
   color: white;
   user-select: none;
-  outline: none;
 }
 
 :root {
   --button-width: 100px;
-  --header-height: 80px;
+  --header-height: 100px;
   --header-border-height: 2px;
   --footer-height: 80px;
   --result-height: 100px;
-  --li-width: 200px;
+  --li-width: 140px;
   --li-height: 50px;
 }
 
@@ -32,6 +31,7 @@ input[type="text"] {
   text-align: center;
   margin: 0px 2px;
   padding: 0px;
+  outline: none;
 }
 
 input[type="text"]:focus::placeholder {
@@ -73,6 +73,7 @@ label {
   bottom: 0px;
   text-align: center;
   line-height: var(--li-height);
+  font-size: 24px;
 }
 
 label:active {

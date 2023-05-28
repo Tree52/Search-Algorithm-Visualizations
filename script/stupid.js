@@ -9,9 +9,7 @@ async function stupidSearch(target) {
     await sleep(500);
 
     if (target === arr[i]) {
-      document.getElementById("result").innerHTML =
-        "Target " + target + " is in the array at index " + i;
-      enableButton("reset");
+      found(target, i);
       return;
     }
 

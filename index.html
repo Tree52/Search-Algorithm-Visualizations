@@ -25,8 +25,16 @@
           <label for="sentinel">Sentinel</label>
         </li>
         <li>
+          <input type="radio" id="jump" name="algo" value="Jump Search" />
+          <label for="jump">Jump</label>
+        </li>
+        <li>
           <input type="radio" id="binary" name="algo" value="Binary Search" />
           <label for="binary">Binary</label>
+        </li>
+        <li>
+          <input type="radio" id="fib" name="algo" value="Fibonacci Search" />
+          <label for="fib">Fibonacci</label>
         </li>
         <li>
           <input type="radio" id="oneSided" name="algo" value="One-Sided Search" />
@@ -35,10 +43,6 @@
         <li>
           <input type="radio" id="meta" name="algo" value="Meta Search" />
           <label for="meta">Meta</label>
-        </li>
-        <li>
-          <input type="radio" id="fib" name="algo" value="Fibonacci Search" />
-          <label for="fib">Fibonacci</label>
         </li>
         <li>
           <input type="radio" id="stupid" name="algo" value="Stupid Search" />
@@ -56,13 +60,13 @@
     </div>
 
     <footer>
-      <button id="-" onclick="removeTile()" style="background-color: red;" disabled>
+      <button id="-" onclick="subtract()" style="background-color: red;" disabled>
         -
       </button>
       
       <input class="fa-solid" id="arr-numbox" type="text" placeholder="#, #, ...">
       
-      <button id="+" onclick="newTile()">
+      <button id="+" onclick="add()">
         +
       </button>
 
@@ -87,10 +91,11 @@
     <script src="script/color.js"></script>
     <script src="script/linear.js"></script>
     <script src="script/sentinel.js"></script>
+    <script src="script/jump.js"></script>
     <script src="script/binary.js"></script>
+    <script src="script/fib.js"></script>
     <script src="script/oneSided.js"></script>
     <script src="script/meta.js"></script>
-    <script src="script/fib.js"></script>
     <script src="script/stupid.js"></script>
   </body>
 </html>

@@ -7,9 +7,7 @@ async function binarySearch(target) {
 
   while (rightIndex >= leftIndex) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
-    color("orange", leftIndex, pivot - 1);
-    color("green", pivot, pivot);
-    color("indigo", pivot + 1, rightIndex);
+    orangeGreenIndigoColor(leftIndex, pivot, rightIndex);
     await sleep(2000);
 
     if (target < arr[pivot]) {
@@ -18,9 +16,7 @@ async function binarySearch(target) {
 
       rightIndex = pivot - 1;
     } else if (target === arr[pivot]) {
-      document.getElementById("result").innerHTML =
-        "Target " + target + " is in the array at index " + pivot;
-      enableButton("reset");
+      found(target, pivot);
       return;
     } else if (target > arr[pivot]) {
       color("white", 0, pivot);
@@ -32,7 +28,6 @@ async function binarySearch(target) {
     }
   }
 
-  document.getElementById("result").innerHTML = "Target is not in the array";
-  enableButton("reset");
+  notFound();
   return;
 }

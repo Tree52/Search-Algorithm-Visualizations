@@ -4,9 +4,7 @@ async function linearSearch(target) {
     await sleep(200);
 
     if (target === arr[i]) {
-      document.getElementById("result").innerHTML =
-        "Target " + target + " is in the array at index " + i;
-      enableButton("reset");
+      found(target, i);
       return;
     }
 
@@ -14,7 +12,6 @@ async function linearSearch(target) {
     await sleep(200);
   }
 
-  document.getElementById("result").innerHTML = "Target is not in the array";
-  enableButton("reset");
+  notFound();
   return;
 }

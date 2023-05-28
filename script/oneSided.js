@@ -8,9 +8,7 @@ async function oneSidedSearch(target) {
     color("green", i, i);
     await sleep(500);
     if (arr[i] === target) {
-      document.getElementById("result").innerHTML =
-      "Target " + target + " is in the array at index " + i;
-      enableButton("reset");
+      found(target, i);
       return;
     }
     color("white", 0, i);
@@ -19,31 +17,8 @@ async function oneSidedSearch(target) {
     count++;
   }
 
-  if (i > arr.length) {
-    for (let j = arr.length; j <= arr.length + 1; j++) {
-      const tile = document.createElement("div");
-      tile.className = "tile";
-      tile.id = "tile" + j;
-      tile.style.backgroundColor = "rgb(18, 18, 18)";
-      document.getElementById("content").append(tile);
-    }
-    document.getElementById("tile" + arr.length).innerHTML = "...";
-    document.getElementById("tile" + (arr.length + 1)).innerHTML = "i " + i;
-    color("green", arr.length + 1, arr.length + 1);
-    await sleep(2000);
-
-    for (let j = arr.length; j <= arr.length + 1; j++) {
-      const tile = document.getElementById("tile" + j);
-      tile.remove();
-    }
-    await sleep(2000);
-  } else {
-    color("green", i, i);
-    await sleep(2000);
-
-    color("white", i, arr.length - 1);
-    await sleep(2000);
-  }
+  outOfBoundsColor(i);
+  await sleep(4000);
 
   // Binary search:
   let leftIndex = (i >> 1) + 1;
@@ -52,36 +27,11 @@ async function oneSidedSearch(target) {
   while (rightIndex >= leftIndex) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
 
-    if (leftIndex >= arr.length) {
-      for (let j = arr.length; j <= arr.length + 4; j++) {
-        const tile = document.createElement("div");
-        tile.className = "tile";
-        tile.id = "tile" + j;
-        tile.style.backgroundColor = "rgb(18, 18, 18)";
-        document.getElementById("content").append(tile);
-      }
-      document.getElementById("tile" + arr.length).innerHTML = "i " + leftIndex;
-      color("orange", arr.length, arr.length);
-
-      document.getElementById("tile" + (arr.length + 1)).innerHTML = "...";
-
-      color("green", arr.length + 2, arr.length + 2);
-      document.getElementById("tile" + (arr.length + 2)).innerHTML = "i " + pivot;
-
-      document.getElementById("tile" + (arr.length + 3)).innerHTML = "...";
-
-      color("indigo", arr.length + 4, arr.length + 4);
-      document.getElementById("tile" + (arr.length + 4)).innerHTML = "i " + rightIndex;
-      await sleep(2000);
-  
-      for (let j = arr.length; j <= arr.length + 4; j++) {
-        const tile = document.getElementById("tile" + j);
-        tile.remove();
-      }
+    if (rightIndex > arr.length) {
+      outOfBoundsColor2(leftIndex, pivot, rightIndex);
+      await sleep(4000);
     } else {
-      color("orange", leftIndex, pivot - 1);
-      color("green", pivot, pivot);
-      color("indigo", pivot + 1, rightIndex);
+      orangeGreenIndigoColor(leftIndex, pivot, rightIndex);
       await sleep(2000);
     }
 
@@ -91,9 +41,7 @@ async function oneSidedSearch(target) {
 
       rightIndex = pivot - 1;
     } else if (target === arr[pivot]) {
-      document.getElementById("result").innerHTML =
-        "Target " + target + " is in the array at index " + pivot;
-      enableButton("reset");
+      found(target, pivot);
       return;
     } else if (target > arr[pivot]) {
       color("white", 0, pivot);
@@ -105,7 +53,6 @@ async function oneSidedSearch(target) {
     }
   }
 
-  document.getElementById("result").innerHTML = "Target is not in the array";
-  enableButton("reset");
+  notFound();
   return;
 }

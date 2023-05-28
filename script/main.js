@@ -1,14 +1,64 @@
 let arr = [];
 
-function removeTile() {
+function newTile(idNum, innerHTML, backgroundColor) {
+  const tile = document.createElement("div");
+  const index = document.createElement("div");
+  tile.className = "tile";
+  index.className = "index";
+  tile.id = "tile" + idNum;
+  index.id = "index" + idNum;
+  tile.innerHTML = innerHTML;
+  index.innerHTML = idNum;
+  tile.style.backgroundColor = backgroundColor;
+  document.getElementById("content").append(tile);
+  document.getElementById("tile" + idNum).append(index);
+}
+
+function newEmptyTile(idNum) {
+  const tile = document.createElement("div");
+  tile.className = "empty-tile";
+  tile.id = "empty-tile" + idNum;
+  document.getElementById("result").append(tile);
+}
+
+function removeTile(idNum) {
+  const tile = document.getElementById("tile" + idNum);
+  tile.remove();
+}
+
+function add() {
+  const valueAsString = document
+  .getElementById("arr-numbox")
+  .value.replace(/\s/g, "")
+  .split(",");
+  
+  for (let i = 0; i < valueAsString.length; i++) {
+    if (isNaN(Number(valueAsString[i]))) {
+      continue;
+    }
+
+    if (valueAsString[0] === "") {
+      let randNum = Math.floor(Math.random() * 100);
+      arr.push(randNum);
+    } else {
+      arr.push(Number(valueAsString[i]));
+    }
+  }
+  
+  updateTiles();
+  
+  if (arr.length !== 0) {
+    enableButton("-");
+  }
+}
+
+function subtract() {
   const valueAsString = document
     .getElementById("arr-numbox")
     .value.replace(/\s/g, "")
     .split(",");
 
   if (valueAsString[0] === "") {
-    const tile = document.getElementById("tile" + (arr.length - 1));
-    tile.remove();
     arr.pop();
   } else {
     for (let i = 0; i < valueAsString.length; i++) {
@@ -22,45 +72,10 @@ function removeTile() {
     }
   }
 
-  updateIDs();
+  updateTiles();
 
   if (arr.length === 0) {
     disableButton("-");
-  }
-}
-
-function newTile() {
-  if (arr.length === 0) {
-    enableButton("-");
-  }
-
-  const valueAsString = document
-    .getElementById("arr-numbox")
-    .value.replace(/\s/g, "")
-    .split(",");
-
-  for (let i = 0; i < valueAsString.length; i++) {
-    if (isNaN(Number(valueAsString[i]))) {
-      continue;
-    }
-
-    // Create new tile
-    const tile = document.createElement("div");
-    tile.className = "tile";
-
-    // arr.length is being used for the index here
-    tile.id = "tile" + arr.length;
-
-    if (valueAsString[0] === "") {
-      let randNum = Math.floor(Math.random() * 100);
-      tile.innerHTML = randNum;
-      arr.push(randNum);
-    } else {
-      tile.innerHTML = Number(valueAsString[i]);
-      arr.push(Number(valueAsString[i]));
-    }
-
-    document.getElementById("content").append(tile);
   }
 }
 
@@ -96,23 +111,26 @@ function go() {
 
   // Run algorithm
   switch (algorithm) {
-    case "Sentinel Search":
-      sentinelSearch(Number(targetAsString));
-      break;
     case "Linear Search":
       linearSearch(Number(targetAsString));
       break;
+    case "Sentinel Search":
+      sentinelSearch(Number(targetAsString));
+      break;
+    case "Jump Search":
+      jumpSearch(Number(targetAsString));
+      break;
     case "Binary Search":
       binarySearch(Number(targetAsString));
+      break;
+    case "Fibonacci Search":
+      fibSearch(Number(targetAsString));
       break;
     case "One-Sided Search":
       oneSidedSearch(Number(targetAsString));
       break;
     case "Meta Search":
       metaSearch(Number(targetAsString));
-      break;
-    case "Fibonacci Search":
-      fibSearch(Number(targetAsString));
       break;
     case "Stupid Search":
       stupidSearch(Number(targetAsString));
@@ -123,7 +141,7 @@ function go() {
 function sort() {
   arr = mergeSort(arr);
 
-  updateIDs();
+  updateTiles();
 }
 
 function clearDiv(id) {
@@ -160,18 +178,25 @@ function reset() {
   }
 }
 
-function updateIDs() {
+function updateTiles() {
   clearDiv("content");
   for (let i = 0; i < arr.length; i++) {
-    const tile = document.createElement("div");
-    tile.className = "tile";
-    tile.id = "tile" + i;
-    tile.innerHTML = arr[i];
-    document.getElementById("content").append(tile);
+    newTile(i, arr[i], "rgb(60, 60, 60)");
   }
 }
 
 function copyToClipboard() {
   document.getElementById("result").innerHTML = "Array copied to clipboard";
   navigator.clipboard.writeText(arr);
+}
+
+function found(target, targetIndex) {
+  document.getElementById("result").innerHTML =
+    "Target " + target + " is in the array at index " + targetIndex;
+  enableButton("reset");
+}
+
+function notFound() {
+  document.getElementById("result").innerHTML = "Target is not in the array";
+  enableButton("reset");
 }

@@ -17,16 +17,12 @@ async function fibSearch(target) {
   while (fibC > 1) {
     // If all tiles eliminated.
     if (eliminatedFrontIndex + 1 === arr.length) {
-      document.getElementById("result").innerHTML =
-        "Target is not in the array";
-      enableButton("reset");
+      notFound();
       return;
     }
 
     let pivot = Math.min(eliminatedFrontIndex + fibA, arr.length - 1);
-    color("orange", eliminatedFrontIndex + 1, pivot - 1);
-    color("green", pivot, pivot);
-    color("indigo", pivot + 1, pivot + fibB - 1);
+    orangeGreenIndigoColor(eliminatedFrontIndex + 1, pivot, pivot + fibB - 1);
     await sleep(2000);
 
     if (target < arr[pivot]) {
@@ -36,9 +32,7 @@ async function fibSearch(target) {
       fibB = fibB - fibA;
       fibA = fibC - fibB;
     } else if (arr[pivot] === target) {
-      document.getElementById("result").innerHTML =
-        "Target " + target + " is in the array at index " + pivot;
-      enableButton("reset");
+      found(target, pivot);
       return;
     } else if (target > arr[pivot]) {
       color("white", 0, pivot);
@@ -63,16 +57,13 @@ async function fibSearch(target) {
     color("green", arr.length - 1, arr.length - 1);
     await sleep(2000);
     if (arr[arr.length - 1] === target) {
-      document.getElementById("result").innerHTML =
-        "Target " + target + " is in the array at index " + (arr.length - 1);
-      enableButton("reset");
+      found(target, arr.length - 1);
       return;
     }
     color("rgb(60, 60, 60)", arr.length - 1, arr.length - 1);
     await sleep(2000);
   }
 
-  document.getElementById("result").innerHTML = "Target is not in the array";
-  enableButton("reset");
+  notFound();
   return;
 }

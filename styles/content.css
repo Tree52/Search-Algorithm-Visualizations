@@ -1,5 +1,4 @@
 .tile {
-  background-color: rgb(60, 60, 60);
   height: 62px;
   min-width: 42px;
   display: flex;
@@ -7,6 +6,13 @@
   align-items: center;
   margin: 0px 2px;
   padding: 0px 10px;
+  position: relative;
+}
+
+.index {
+  position: absolute;
+  bottom: -30px;
+  font-size: 20px;
 }
 
 .empty-tile {

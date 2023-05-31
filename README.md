@@ -7,8 +7,9 @@ Current algorithms:
 * Sentinel Search
 * Jump Search
 * Binary Search
+* Fibonacci Search
+* Ternary Search
 * One-Sided Binary Search
 * Meta Binary Search
-* Fibonacci Search
 
 https://tree52.github.io/Search-Algorithm-Visualizations/

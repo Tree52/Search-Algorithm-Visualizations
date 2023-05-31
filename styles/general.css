@@ -13,7 +13,7 @@
   --footer-height: 80px;
   --result-height: 100px;
   --li-width: 140px;
-  --li-height: 50px;
+  --li-height: 44px;
 }
 
 html,
@@ -60,7 +60,7 @@ li {
   width: var(--li-width);
   height: var(--li-height);
   position: relative;
-  margin: 0px 2px;
+  margin: 2px;
 }
 
 label {

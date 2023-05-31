@@ -1,4 +1,7 @@
 async function sentinelSearch(target) {
+  questionMarks();
+  await sleep(2000);
+  
   let last = arr[arr.length - 1];
   document.getElementById("tile" + (arr.length - 1)).firstChild.data = "";
   await sleep(2000);
@@ -9,7 +12,7 @@ async function sentinelSearch(target) {
 
   let i = 0;
   while (1) {
-    color("green", i, i);
+    colorPivot(i);
     await sleep(200);
     if (arr[i] === target) {
       break;
@@ -19,7 +22,7 @@ async function sentinelSearch(target) {
     i++;
   }
 
-  color("green", i, i);
+  colorPivot(i);
   await sleep(2000);
 
   document.getElementById("tile" + (arr.length - 1)).firstChild.data = "";
@@ -27,10 +30,10 @@ async function sentinelSearch(target) {
   await sleep(2000);
 
   arr[arr.length - 1] = last;
-  document.getElementById("tile" + (arr.length - 1)).firstChild.data = last;
+  document.getElementById("tile" + (arr.length - 1)).firstChild.data = "?";
   await sleep(2000);
 
-  color("green", i, i);
+  colorPivot(i);
   await sleep(200);
   if (i < arr.length - 1 || arr[arr.length - 1] === target) {
     found(target, i);

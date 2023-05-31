@@ -16,7 +16,7 @@
 }
 
 .empty-tile {
-  border: 2px rgb(60, 60, 60) solid;
+  border: 2px white solid;
   height: 58px;
   width: 58px;
   margin: 0px 2px;

@@ -126,6 +126,9 @@ function go() {
     case "Fibonacci Search":
       fibSearch(Number(targetAsString));
       break;
+    case "Ternary Search":
+      ternarySearch(Number(targetAsString));
+      break;
     case "One-Sided Search":
       oneSidedSearch(Number(targetAsString));
       break;
@@ -166,6 +169,7 @@ function enableButton(id) {
 
 function reset() {
   clearDiv("result");
+  updateTiles();
 
   color("rgb(60, 60, 60)", 0, arr.length - 1);
 
@@ -200,3 +204,11 @@ function notFound() {
   document.getElementById("result").innerHTML = "Target is not in the array";
   enableButton("reset");
 }
+
+function questionMarks() {
+  for (let i = 0; i < arr.length; i++) {
+    document.getElementById("tile" + i).firstChild.data = "?";
+  }
+}
+
+const isSorted = arr => arr.every((v,i,a) => !i || a[i-1] <= v);

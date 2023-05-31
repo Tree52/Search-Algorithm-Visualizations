@@ -1,11 +1,14 @@
 async function stupidSearch(target) {
+  questionMarks();
+  await sleep(2000);
+  
   let count = 0;
 
   while (1) {
     count++;
     document.getElementById("result").innerHTML = count;
     let i = Math.floor(Math.random() * arr.length);
-    color("green", i, i);
+    colorPivot(i);
     await sleep(500);
 
     if (target === arr[i]) {

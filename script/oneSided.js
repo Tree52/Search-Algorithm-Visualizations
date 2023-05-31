@@ -1,11 +1,15 @@
 async function oneSidedSearch(target) {
-  sort();
+  if (!isSorted(arr)) {
+    sort();
+    await sleep(2000);
+  }
+  questionMarks();
   await sleep(2000);
 
   let i = 0;
   let count = 0;
   while (arr[i] <= target) {
-    color("green", i, i);
+    colorPivot(i);
     await sleep(500);
     if (arr[i] === target) {
       found(target, i);
@@ -17,7 +21,7 @@ async function oneSidedSearch(target) {
     count++;
   }
 
-  outOfBoundsColor(i);
+  oobColor(i);
   await sleep(4000);
 
   // Binary search:
@@ -25,20 +29,21 @@ async function oneSidedSearch(target) {
   let rightIndex = i - 1;
 
   while (rightIndex >= leftIndex) {
-    let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
-
-    if (rightIndex > arr.length) {
-      outOfBoundsColor2(leftIndex, pivot, rightIndex);
+    let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2); 
+    
+    if (pivot >= arr.length) {
+      oobColor(pivot);
       await sleep(4000);
     } else {
-      orangeGreenIndigoColor(leftIndex, pivot, rightIndex);
-      await sleep(2000);
+      colorPivot(pivot);
+    await sleep(2000);
     }
-
-    if (target < arr[pivot] || arr[pivot] === undefined) {
+    
+    if (arr[pivot] === undefined) {
+      rightIndex = pivot - 1;
+    } else if (target < arr[pivot]) {
       color("white", pivot, arr.length - 1);
       await sleep(2000);
-
       rightIndex = pivot - 1;
     } else if (target === arr[pivot]) {
       found(target, pivot);
@@ -46,7 +51,6 @@ async function oneSidedSearch(target) {
     } else if (target > arr[pivot]) {
       color("white", 0, pivot);
       await sleep(2000);
-
       leftIndex = pivot + 1;
     } else {
       throw new Error("Error in oneSidedSearch function");

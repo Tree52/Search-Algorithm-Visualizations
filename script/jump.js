@@ -1,12 +1,16 @@
 async function jumpSearch(target) {
-  sort();
+  if (!isSorted(arr)) {
+    sort();
+    await sleep(2000);
+  }
+  questionMarks();
   await sleep(2000);
-
+  
   let jumpSize = Math.floor(Math.sqrt(arr.length));
 
   let i = 0;
   for (; arr[i] <= target; i += jumpSize) {
-    color("green", i, i);
+    colorPivot(i);
     await sleep(500);
     if (arr[i] === target) {
       found(target, i);
@@ -16,11 +20,11 @@ async function jumpSearch(target) {
     await sleep(500);
   }
 
-  outOfBoundsColor(i);
+  oobColor(i);
   await sleep(4000);
 
-  for (let prevIndex = i - jumpSize + 1; prevIndex < i && prevIndex !== arr.length; prevIndex++) {
-    color("green", prevIndex, prevIndex);
+  for (let prevIndex = i - jumpSize + 1; prevIndex < i && prevIndex !== arr.length && prevIndex >= 0; prevIndex++) {
+    colorPivot(prevIndex);
     await sleep(500);
     if (arr[prevIndex] === target) {
       found(target, prevIndex);

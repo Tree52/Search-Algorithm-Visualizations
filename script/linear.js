@@ -1,6 +1,9 @@
 async function linearSearch(target) {
+  questionMarks();
+  await sleep(2000);
+
   for (let i = 0; i < arr.length; i++) {
-    color("green", i, i);
+    colorPivot(i);
     await sleep(200);
 
     if (target === arr[i]) {

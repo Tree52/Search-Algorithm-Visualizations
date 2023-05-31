@@ -1,5 +1,9 @@
 async function metaSearch(target) {
-  sort();
+  if (!isSorted(arr)) {
+    sort();
+    await sleep(2000);
+  }
+  questionMarks();
   await sleep(2000);
   
   let numBitsNeededForMaxIndex = Math.ceil(Math.log2(arr.length));
@@ -12,7 +16,7 @@ async function metaSearch(target) {
 
   let pivot = 0;
   for (let i = numBitsNeededForMaxIndex - 1; i >= 0; i--) {
-    color("green", pivot, pivot);
+    colorPivot(pivot);
     await sleep(2000);
     if (arr[pivot] === target) {
       found(target, pivot);
@@ -23,7 +27,7 @@ async function metaSearch(target) {
 
     let newPivotCandidate = pivot | (1 << i);
 
-    outOfBoundsColor3(newPivotCandidate);
+    oobColor2(newPivotCandidate);
     await sleep(2000);
     
     if (newPivotCandidate < arr.length && arr[newPivotCandidate] <= target) {
@@ -37,7 +41,7 @@ async function metaSearch(target) {
     await sleep(2000);
   }
 
-  color("green", pivot, pivot);
+  colorPivot(pivot);
   await sleep(2000);
   if (arr[pivot] === target) {
     found(target, pivot);

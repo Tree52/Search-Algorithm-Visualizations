@@ -1,5 +1,9 @@
 async function fibSearch(target) {
-  sort();
+  if (!isSorted(arr)) {
+    sort();
+    await sleep(2000);
+  }
+  questionMarks();
   await sleep(2000);
 
   let fibA = 0;
@@ -22,7 +26,7 @@ async function fibSearch(target) {
     }
 
     let pivot = Math.min(eliminatedFrontIndex + fibA, arr.length - 1);
-    orangeGreenIndigoColor(eliminatedFrontIndex + 1, pivot, pivot + fibB - 1);
+    colorPivot(pivot);
     await sleep(2000);
 
     if (target < arr[pivot]) {
@@ -54,13 +58,13 @@ async function fibSearch(target) {
 
   // If final element hasn't been eliminated. Check it.
   if (eliminatedFrontIndex + 1 === arr.length - 1) {
-    color("green", arr.length - 1, arr.length - 1);
+    colorPivot(arr.length - 1);
     await sleep(2000);
     if (arr[arr.length - 1] === target) {
       found(target, arr.length - 1);
       return;
     }
-    color("rgb(60, 60, 60)", arr.length - 1, arr.length - 1);
+    color("white", arr.length - 1, arr.length - 1);
     await sleep(2000);
   }
 

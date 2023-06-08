@@ -7,3 +7,31 @@ footer {
 #arr-numbox {
   width: 400px;
 }
+
+input[type="text"] {
+  appearance: textfield;
+  color: black;
+  width: var(--button-width);
+  border: none;
+  text-align: center;
+  margin: 0px 2px;
+  padding: 0px;
+  outline: none;
+}
+
+input[type="text"]:focus::placeholder {
+  color: transparent;
+}
+
+button {
+  background-color: rgb(60, 60, 60);
+  cursor: pointer;
+  margin: 0px 2px;
+  border: none;
+  padding: 0px;
+  width: var(--button-width);
+}
+
+button:active {
+  background-color: rgb(18, 18, 18);
+}

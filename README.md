@@ -10,5 +10,6 @@ Current algorithms:
 * Exponential Search
 * Meta Binary Search
 * Fibonacci Search
+* Ubiquitous Binary Search
 
 https://tree52.github.io/Search-Algorithm-Visualizations/

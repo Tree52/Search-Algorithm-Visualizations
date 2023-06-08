@@ -138,6 +138,9 @@ function go() {
     case "Stupid Search":
       stupidSearch(Number(targetAsString));
       break;
+    case "Ubiquitous Search":
+      ubiquitousSearch(Number(targetAsString));
+      break;
   }
 }
 

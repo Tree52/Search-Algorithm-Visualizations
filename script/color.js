@@ -21,15 +21,13 @@ async function oobColor(i) { // oob === out of bounds
     await sleep(2000);
     removeTile(arr.length);
     await sleep(2000);
-  } else if (i > arr.length) {
+  } else {
     newTile("", "...", "rgb(18, 18, 18)");
     newTile(i, "", "green");
     await sleep(2000);
     removeTile("");
     removeTile(i);
     await sleep(2000);
-  } else {
-    throw new Error("Error in oobColor function");
   }
 }
 
@@ -43,14 +41,12 @@ async function oobColor2(newPivotCandidate) {
     await sleep(2000);
     removeTile(arr.length);
     await sleep(2000);
-  } else if (newPivotCandidate > arr.length) {
+  } else {
     newTile("", "...", "rgb(18, 18, 18)");
     newTile(newPivotCandidate, "", "lightgreen");
     await sleep(2000);
     removeTile("");
     removeTile(newPivotCandidate);
     await sleep(2000);
-  } else {
-    throw new Error("Error in oobColor2 function");
   }
 }

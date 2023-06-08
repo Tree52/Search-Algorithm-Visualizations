@@ -21,12 +21,10 @@ async function binarySearch(target) {
     } else if (target === arr[pivot]) {
       found(target, pivot);
       return;
-    } else if (target > arr[pivot]) {
+    } else {
       color("white", 0, pivot);
       await sleep(2000);
       leftIndex = pivot + 1;
-    } else {
-      throw new Error("Error in binarySearch function");
     }
   }
 

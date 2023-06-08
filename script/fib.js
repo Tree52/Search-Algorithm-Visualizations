@@ -38,15 +38,13 @@ async function fibSearch(target) {
     } else if (arr[pivot] === target) {
       found(target, pivot);
       return;
-    } else if (target > arr[pivot]) {
+    } else {
       color("white", 0, pivot);
       await sleep(2000);
       fibC = fibB;
       fibB = fibA;
       fibA = fibC - fibB;
       eliminatedFrontIndex = pivot;
-    } else {
-      throw new Error("Error in fibSearch function");
     }
   }
 

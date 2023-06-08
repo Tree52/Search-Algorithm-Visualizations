@@ -196,12 +196,12 @@ function copyToClipboard() {
 
 function found(target, targetIndex) {
   document.getElementById("result").innerHTML =
-    "Target " + target + " is in the array at index " + targetIndex;
+    "Target " + target + " is in the list at index " + targetIndex;
   enableButton("reset");
 }
 
 function notFound() {
-  document.getElementById("result").innerHTML = "Target is not in the array";
+  document.getElementById("result").innerHTML = "Target is not in the list";
   enableButton("reset");
 }
 

@@ -7,7 +7,7 @@ Current algorithms:
 * Sentinel Search
 * Jump Search
 * Binary Search
-* One-Sided Binary Search
+* Exponential Search
 * Meta Binary Search
 * Fibonacci Search
 

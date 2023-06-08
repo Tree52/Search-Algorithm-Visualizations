@@ -1,4 +1,4 @@
-async function oneSidedSearch(target) {
+async function exponentialSearch(target) {
   if (!isSorted(arr)) {
     sort();
     await sleep(2000);
@@ -6,9 +6,17 @@ async function oneSidedSearch(target) {
   questionMarks();
   await sleep(2000);
 
-  let i = 0;
-  let count = 0;
-  while (arr[i] <= target) {
+  colorPivot(0);
+  await sleep(500);
+  if (arr[0] === target) {
+    found(target, 0);
+    return;
+  }
+  color("white", 0, 0);
+  await sleep(500);
+
+  let i = 1;
+  while (arr[i] <= target && i < arr.length) {
     colorPivot(i);
     await sleep(500);
     if (arr[i] === target) {
@@ -17,8 +25,7 @@ async function oneSidedSearch(target) {
     }
     color("white", 0, i);
     await sleep(500);
-    i = 1 << count;
-    count++;
+    i = i * 2;
   }
 
   oobColor(i);

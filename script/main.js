@@ -129,8 +129,8 @@ function go() {
     case "Ternary Search":
       ternarySearch(Number(targetAsString));
       break;
-    case "One-Sided Search":
-      oneSidedSearch(Number(targetAsString));
+    case "Exponential Search":
+      exponentialSearch(Number(targetAsString));
       break;
     case "Meta Search":
       metaSearch(Number(targetAsString));

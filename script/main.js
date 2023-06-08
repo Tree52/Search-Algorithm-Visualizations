@@ -88,8 +88,8 @@ function go() {
 
   // Error check arr empty
   if (arr.length === 0) {
-    document.getElementById("result").innerHTML = "Array is empty";
-    throw new Error("Array is empty");
+    document.getElementById("result").innerHTML = "List is empty";
+    throw new Error("List is empty");
   }
 
   // Store target
@@ -190,7 +190,7 @@ function updateTiles() {
 }
 
 function copyToClipboard() {
-  document.getElementById("result").innerHTML = "Array copied to clipboard";
+  document.getElementById("result").innerHTML = "List copied to clipboard";
   navigator.clipboard.writeText(arr);
 }
 

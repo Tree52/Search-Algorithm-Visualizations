@@ -1,7 +1,7 @@
 footer {
   display: flex;
   justify-content: center;
-  height: var(--footer-height);
+  height: 80px;
 }
 
 #arr-numbox {
@@ -11,12 +11,14 @@ footer {
 input[type="text"] {
   appearance: textfield;
   color: black;
-  width: var(--button-width);
+  width: 100px;
   border: none;
   text-align: center;
   margin: 0px 2px;
   padding: 0px;
   outline: none;
+  font-size: inherit;
+  min-width: 0px;
 }
 
 input[type="text"]:focus::placeholder {
@@ -29,7 +31,11 @@ button {
   margin: 0px 2px;
   border: none;
   padding: 0px;
-  width: var(--button-width);
+  width: 100px;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 button:active {

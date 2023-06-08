@@ -15,6 +15,11 @@
 
   <body>
     <header>
+      <div id="titles">
+          Unsorted List Algos: <br>
+          Sorted List Algos:
+      </div>
+
       <ul>
         <li>
           <input type="radio" id="linear" name="algo" value="Linear Search" checked="checked" />
@@ -24,6 +29,12 @@
           <input type="radio" id="sentinel" name="algo" value="Sentinel Search" />
           <label for="sentinel">Sentinel</label>
         </li>
+        <li>
+          <input type="radio" id="stupid" name="algo" value="Stupid Search" />
+          <label for="stupid">Stupid</label>
+        </li>
+      </ul>
+      <ul>
         <li>
           <input type="radio" id="jump" name="algo" value="Jump Search" />
           <label for="jump">Jump</label>
@@ -47,10 +58,6 @@
         <li>
           <input type="radio" id="meta" name="algo" value="Meta Search" />
           <label for="meta">Meta</label>
-        </li>
-        <li>
-          <input type="radio" id="stupid" name="algo" value="Stupid Search" />
-          <label for="stupid">Stupid</label>
         </li>
       </ul>
     </header>

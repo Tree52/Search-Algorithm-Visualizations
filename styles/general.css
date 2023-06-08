@@ -1,24 +1,16 @@
-* {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 36px;
-  font-weight: bold;
-  color: white;
-  user-select: none;
-}
-
-:root {
-  --button-width: 100px;
-  --header-height: 100px;
-  --header-border-height: 2px;
-  --footer-height: 80px;
-  --result-height: 100px;
-  --li-width: 150px;
-  --li-height: 44px;
-}
-
 html,
 body {
-  background-color: rgb(18, 18, 18);
-  margin: 0px;
   height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-weight: bold;
+  user-select: none;
+  font-size: 36px;
+  margin: 0px;
+  background-color: rgb(18, 18, 18);
+  display: flex;
+  flex-direction: column;
 }

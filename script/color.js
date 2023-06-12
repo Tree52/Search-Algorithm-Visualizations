@@ -10,7 +10,8 @@ function colorPivot(pivot) {
   document.getElementById("tile" + pivot).firstChild.data = arr[pivot];
 }
 
-async function oobColor(i) { // oob === out of bounds
+async function oobColor(i) {
+  // oob === out of bounds
   if (i < arr.length) {
     colorPivot(i);
     await sleep(2000);
@@ -34,7 +35,8 @@ async function oobColor(i) { // oob === out of bounds
 async function oobColor2(newPivotCandidate) {
   if (newPivotCandidate < arr.length) {
     color("lightgreen", newPivotCandidate, newPivotCandidate);
-    document.getElementById("tile" + newPivotCandidate).firstChild.data = arr[newPivotCandidate];
+    document.getElementById("tile" + newPivotCandidate).firstChild.data =
+      arr[newPivotCandidate];
     await sleep(2000);
   } else if (newPivotCandidate === arr.length) {
     newTile(arr.length, "", "lightgreen");

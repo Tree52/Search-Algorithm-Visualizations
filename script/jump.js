@@ -5,7 +5,7 @@ async function jumpSearch(target) {
   }
   questionMarks();
   await sleep(2000);
-  
+
   let jumpSize = Math.floor(Math.sqrt(arr.length));
 
   let i = 0;
@@ -23,7 +23,11 @@ async function jumpSearch(target) {
   oobColor(i);
   await sleep(4000);
 
-  for (let prevIndex = i - jumpSize + 1; prevIndex < i && prevIndex !== arr.length && prevIndex >= 0; prevIndex++) {
+  for (
+    let prevIndex = i - jumpSize + 1;
+    prevIndex < i && prevIndex !== arr.length && prevIndex >= 0;
+    prevIndex++
+  ) {
     colorPivot(prevIndex);
     await sleep(500);
     if (arr[prevIndex] === target) {

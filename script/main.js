@@ -28,10 +28,10 @@ function removeTile(idNum) {
 
 function add() {
   const valueAsString = document
-  .getElementById("arr-numbox")
-  .value.replace(/\s/g, "")
-  .split(",");
-  
+    .getElementById("arr-numbox")
+    .value.replace(/\s/g, "")
+    .split(",");
+
   for (let i = 0; i < valueAsString.length; i++) {
     if (isNaN(Number(valueAsString[i]))) {
       continue;
@@ -44,9 +44,9 @@ function add() {
       arr.push(Number(valueAsString[i]));
     }
   }
-  
+
   updateTiles();
-  
+
   if (arr.length !== 0) {
     enableButton("-");
   }
@@ -111,32 +111,35 @@ function go() {
 
   // Run algorithm
   switch (algorithm) {
-    case "Linear Search":
-      linearSearch(Number(targetAsString));
-      break;
-    case "Sentinel Search":
-      sentinelSearch(Number(targetAsString));
-      break;
-    case "Jump Search":
-      jumpSearch(Number(targetAsString));
-      break;
     case "Binary Search":
       binarySearch(Number(targetAsString));
-      break;
-    case "Fibonacci Search":
-      fibSearch(Number(targetAsString));
-      break;
-    case "Ternary Search":
-      ternarySearch(Number(targetAsString));
       break;
     case "Exponential Search":
       exponentialSearch(Number(targetAsString));
       break;
+    case "Fibonacci Search":
+      fibSearch(Number(targetAsString));
+      break;
+    case "Interpolation Search":
+      interpolationSearch(Number(targetAsString));
+      break;
+    case "Jump Search":
+      jumpSearch(Number(targetAsString));
+      break;
+    case "Linear Search":
+      linearSearch(Number(targetAsString));
+      break;
     case "Meta Search":
       metaSearch(Number(targetAsString));
       break;
+    case "Sentinel Search":
+      sentinelSearch(Number(targetAsString));
+      break;
     case "Stupid Search":
       stupidSearch(Number(targetAsString));
+      break;
+    case "Ternary Search":
+      ternarySearch(Number(targetAsString));
       break;
     case "Ubiquitous Search":
       ubiquitousSearch(Number(targetAsString));
@@ -214,4 +217,4 @@ function questionMarks() {
   }
 }
 
-const isSorted = arr => arr.every((v,i,a) => !i || a[i-1] <= v);
+const isSorted = (arr) => arr.every((v, i, a) => !i || a[i - 1] <= v);

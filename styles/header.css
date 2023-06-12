@@ -14,7 +14,7 @@ ul {
 
 li {
   float: left;
-  width: 150px;
+  width: 160px;
   height: var(--li-height);
   position: relative;
   margin: 2px;
@@ -41,7 +41,7 @@ input[type="radio"]:checked + label {
   color: rgb(60, 60, 60);
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1750px) {
   #titles {
     display: none;
   }
@@ -50,7 +50,7 @@ input[type="radio"]:checked + label {
 #titles {
   position: absolute;
   left: 10px;
-  line-height: calc(var(--li-height) + 2*var(--li-margin));
+  line-height: calc(var(--li-height) + 2 * var(--li-margin));
 }
 
 :root {

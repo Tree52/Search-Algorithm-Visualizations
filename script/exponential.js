@@ -32,9 +32,9 @@ async function exponentialSearch(target) {
   await sleep(4000);
 
   // Binary search:
-  let leftIndex = (i * .5) + 1;
+  let leftIndex = i * 0.5 + 1;
   let rightIndex = Math.min(i - 1, arr.length - 1);
-  
+
   while (rightIndex >= leftIndex) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
     colorPivot(pivot);

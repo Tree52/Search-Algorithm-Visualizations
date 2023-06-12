@@ -14,14 +14,13 @@ async function ubiquitousSearch(target) {
     color("lightgreen", pivot, pivot);
     document.getElementById("tile" + pivot).firstChild.data = arr[pivot];
     await sleep(2000);
-    
+
     if (arr[pivot] <= target) {
       color("white", 0, pivot - 1);
       await sleep(2000);
       color("rgb(60, 60, 60)", pivot, pivot);
       leftIndex = pivot;
-    }
-    else {
+    } else {
       color("white", pivot + 1, arr.length - 1);
       await sleep(2000);
       color("rgb(60, 60, 60)", pivot, pivot);
@@ -46,7 +45,7 @@ async function ubiquitousSearch(target) {
   }
   color("white", rightIndex, rightIndex);
   await sleep(2000);
-  
+
   notFound();
   return;
 }

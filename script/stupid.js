@@ -1,7 +1,7 @@
 async function stupidSearch(target) {
   questionMarks();
   await sleep(2000);
-  
+
   let count = 0;
 
   while (1) {

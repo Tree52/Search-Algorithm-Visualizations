@@ -7,10 +7,10 @@
       Search Algorithm Visualizations
     </title>
 
-    <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/content.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
   </head>
 
   <body>
@@ -36,28 +36,32 @@
       </ul>
       <ul>
         <li>
-          <input type="radio" id="jump" name="algo" value="Jump Search" />
-          <label for="jump">Jump</label>
-        </li>
-        <li>
           <input type="radio" id="binary" name="algo" value="Binary Search" />
           <label for="binary">Binary</label>
-        </li>
-        <li>
-          <input type="radio" id="fib" name="algo" value="Fibonacci Search" />
-          <label for="fib">Fibonacci</label>
-        </li>
-        <li>
-          <input type="radio" id="ternary" name="algo" value="Ternary Search" />
-          <label for="ternary">Ternary</label>
         </li>
         <li>
           <input type="radio" id="exponential" name="algo" value="Exponential Search" />
           <label for="exponential">Exponential</label>
         </li>
         <li>
+          <input type="radio" id="fib" name="algo" value="Fibonacci Search" />
+          <label for="fib">Fibonacci</label>
+        </li>
+        <li>
+          <input type="radio" id="interpolation" name="algo" value="Interpolation Search" />
+          <label for="interpolation">Interpolation</label>
+        </li>
+        <li>
+          <input type="radio" id="jump" name="algo" value="Jump Search" />
+          <label for="jump">Jump</label>
+        </li>
+        <li>
           <input type="radio" id="meta" name="algo" value="Meta Search" />
           <label for="meta">Meta</label>
+        </li>
+        <li>
+          <input type="radio" id="ternary" name="algo" value="Ternary Search" />
+          <label for="ternary">Ternary</label>
         </li>
         <li>
           <input type="radio" id="ubiquitous" name="algo" value="Ubiquitous Search" />
@@ -101,18 +105,19 @@
     </footer>
 
     <script src="https://kit.fontawesome.com/3b5c541e5c.js" crossorigin="anonymous"></script>
+    <script src="script/binary.js"></script>
+    <script src="script/color.js"></script>
+    <script src="script/exponential.js"></script>
+    <script src="script/fib.js"></script>
+    <script src="script/interpolation.js"></script>
+    <script src="script/jump.js"></script>
+    <script src="script/linear.js"></script>
     <script src="script/main.js"></script>
     <script src="script/mergeSort.js"></script>
-    <script src="script/color.js"></script>
-    <script src="script/linear.js"></script>
-    <script src="script/sentinel.js"></script>
-    <script src="script/jump.js"></script>
-    <script src="script/binary.js"></script>
-    <script src="script/fib.js"></script>
-    <script src="script/ternary.js"></script>
-    <script src="script/exponential.js"></script>
     <script src="script/meta.js"></script>
+    <script src="script/sentinel.js"></script>
     <script src="script/stupid.js"></script>
+    <script src="script/ternary.js"></script>
     <script src="script/ubiquitous.js"></script>
   </body>
 </html>

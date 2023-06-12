@@ -1,7 +1,7 @@
 async function sentinelSearch(target) {
   questionMarks();
   await sleep(2000);
-  
+
   let last = arr[arr.length - 1];
   document.getElementById("tile" + (arr.length - 1)).firstChild.data = "";
   await sleep(2000);

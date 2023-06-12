@@ -5,9 +5,9 @@ async function metaSearch(target) {
   }
   questionMarks();
   await sleep(2000);
-  
+
   let numBitsNeededForMaxIndex = Math.ceil(Math.log2(arr.length));
-  
+
   clearDiv("result");
   for (let i = numBitsNeededForMaxIndex - 1; i >= 0; i--) {
     newEmptyTile(i);
@@ -29,7 +29,7 @@ async function metaSearch(target) {
 
     oobColor2(newPivotCandidate);
     await sleep(2000);
-    
+
     if (newPivotCandidate < arr.length && arr[newPivotCandidate] <= target) {
       pivot = newPivotCandidate;
       document.getElementById("empty-tile" + i).innerHTML = 1;

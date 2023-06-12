@@ -5,7 +5,7 @@ async function ternarySearch(target) {
   }
   questionMarks();
   await sleep(2000);
-  
+
   let l = 0;
   let r = arr.length - 1;
 

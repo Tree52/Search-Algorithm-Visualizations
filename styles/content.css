@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.tile:hover {
+  padding: 2px 12px;
+}
+
 .index {
   position: absolute;
   bottom: -30px;

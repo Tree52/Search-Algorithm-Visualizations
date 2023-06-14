@@ -215,19 +215,15 @@ function questionMarks() {
 
 const isSorted = (arr) => arr.every((v, i, a) => !i || a[i - 1] <= v);
 
-function openClose() {
+function openCloseSidebar() {
   let sidebar = document.getElementById("sidebar");
+  let myDiv = document.getElementById("codeContainer");
   if (sidebar.classList.contains("fa-flip-horizontal")) {
     sidebar.classList.remove("fa-flip-horizontal");
+    myDiv.style.display = "none";
   } else {
     sidebar.classList.add("fa-flip-horizontal");
-  }
-
-  let myDiv = document.getElementById("codeContainer");
-  if (myDiv.style.visibility === "hidden") {
-    myDiv.style.visibility = "visible";
-  } else {
-    myDiv.style.visibility = "hidden";
+    myDiv.style.display = "flex";
   }
 }
 

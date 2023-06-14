@@ -1,4 +1,5 @@
 async function ubiquitousSearch(target) {
+  showTitle1("Ubiquitous Pivot:");
   if (!isSorted(arr)) {
     sort();
     await sleep(2000);
@@ -12,6 +13,18 @@ async function ubiquitousSearch(target) {
   while (rightIndex - leftIndex > 1) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
     color("lightgreen", pivot, pivot);
+    equationHTML(
+      1,
+      "$$" +
+        leftIndex +
+        "-\\left\\lfloor\\frac{" +
+        rightIndex +
+        "-" +
+        leftIndex +
+        "}{2}\\right\\rfloor=" +
+        pivot +
+        "$$"
+    );
     document.getElementById("tile" + pivot).firstChild.data = arr[pivot];
     await sleep(2000);
 
@@ -28,7 +41,8 @@ async function ubiquitousSearch(target) {
     }
   }
 
-  colorPivot(leftIndex);
+  equationHTML(0, "");
+  definePivot(leftIndex, 0, "$$" + leftIndex + "$$");
   await sleep(2000);
   if (arr[leftIndex] === target) {
     found(target, leftIndex);
@@ -37,7 +51,7 @@ async function ubiquitousSearch(target) {
   color("white", leftIndex, leftIndex);
   await sleep(2000);
 
-  colorPivot(rightIndex);
+  definePivot(rightIndex, 0, "$$" + rightIndex + "$$");
   await sleep(2000);
   if (arr[rightIndex] === target) {
     found(target, rightIndex);

@@ -1,32 +1,32 @@
 let arr = [];
 
 function newTile(idNum, innerHTML, backgroundColor) {
-  const tile = document.createElement("div");
-  const index = document.createElement("div");
-  tile.className = "tile";
-  index.className = "index";
-  tile.id = "tile" + idNum;
-  index.id = "index" + idNum;
-  tile.innerHTML = innerHTML;
-  index.innerHTML = idNum;
-  tile.style.backgroundColor = backgroundColor;
-  document.getElementById("content").append(tile);
-  document.getElementById("tile" + idNum).append(index);
+  const tileDiv = document.createElement("div");
+  const indexDiv = document.createElement("div");
+  tileDiv.className = "tile";
+  indexDiv.className = "index";
+  tileDiv.id = "tile" + idNum;
+  indexDiv.id = "index" + idNum;
+  tileDiv.innerHTML = innerHTML;
+  indexDiv.innerHTML = idNum;
+  tileDiv.style.backgroundColor = backgroundColor;
+  document.getElementById("content").append(tileDiv);
+  document.getElementById("tile" + idNum).append(indexDiv);
 }
 
 function newEmptyTile(idNum) {
-  const tile = document.createElement("div");
-  tile.className = "empty-tile";
-  tile.id = "empty-tile" + idNum;
-  document.getElementById("result").append(tile);
+  const tileDiv = document.createElement("div");
+  tileDiv.className = "empty-tile";
+  tileDiv.id = "empty-tile" + idNum;
+  document.getElementById("result").append(tileDiv);
 }
 
 function removeTile(idNum) {
-  const tile = document.getElementById("tile" + idNum);
-  tile.remove();
+  const tileDiv = document.getElementById("tile" + idNum);
+  tileDiv.remove();
 }
 
-function add() {
+function push() {
   const valueAsString = document
     .getElementById("arr-numbox")
     .value.replace(/\s/g, "")
@@ -52,7 +52,7 @@ function add() {
   }
 }
 
-function subtract() {
+function pop() {
   const valueAsString = document
     .getElementById("arr-numbox")
     .value.replace(/\s/g, "")
@@ -88,8 +88,8 @@ function go() {
 
   // Error check arr empty
   if (arr.length === 0) {
-    document.getElementById("result").innerHTML = "List is empty";
-    throw new Error("List is empty");
+    document.getElementById("result").innerHTML = "Array is empty";
+    throw new Error("Array is empty");
   }
 
   // Store target
@@ -135,9 +135,6 @@ function go() {
     case "Sentinel Search":
       sentinelSearch(Number(targetAsString));
       break;
-    case "Stupid Search":
-      stupidSearch(Number(targetAsString));
-      break;
     case "Ternary Search":
       ternarySearch(Number(targetAsString));
       break;
@@ -149,32 +146,31 @@ function go() {
 
 function sort() {
   arr = mergeSort(arr);
-
   updateTiles();
 }
 
 function clearDiv(id) {
   let myDiv = document.getElementById(id);
-
   myDiv.innerHTML = "";
 }
 
 function disableButton(id) {
   let myButton = document.getElementById(id);
-
   myButton.style.backgroundColor = "red";
   myButton.disabled = true;
 }
 
 function enableButton(id) {
   let myButton = document.getElementById(id);
-
   myButton.style.backgroundColor = "rgb(60, 60, 60)";
   myButton.disabled = false;
 }
 
 function reset() {
   clearDiv("result");
+  clearDiv("equation0");
+  clearDiv("equation1");
+  hideTitle1();
   updateTiles();
 
   color("rgb(60, 60, 60)", 0, arr.length - 1);
@@ -196,18 +192,18 @@ function updateTiles() {
 }
 
 function copyToClipboard() {
-  document.getElementById("result").innerHTML = "List copied to clipboard";
+  document.getElementById("result").innerHTML = "Array copied to clipboard";
   navigator.clipboard.writeText(arr);
 }
 
 function found(target, targetIndex) {
   document.getElementById("result").innerHTML =
-    "Target " + target + " is in the list at index " + targetIndex;
+    "Target " + target + " is in the array at index " + targetIndex;
   enableButton("reset");
 }
 
 function notFound() {
-  document.getElementById("result").innerHTML = "Target is not in the list";
+  document.getElementById("result").innerHTML = "Target is not in the array";
   enableButton("reset");
 }
 
@@ -218,3 +214,42 @@ function questionMarks() {
 }
 
 const isSorted = (arr) => arr.every((v, i, a) => !i || a[i - 1] <= v);
+
+function openClose() {
+  let sidebar = document.getElementById("sidebar");
+  if (sidebar.classList.contains("fa-flip-horizontal")) {
+    sidebar.classList.remove("fa-flip-horizontal");
+  } else {
+    sidebar.classList.add("fa-flip-horizontal");
+  }
+
+  let myDiv = document.getElementById("codeContainer");
+  if (myDiv.style.visibility === "hidden") {
+    myDiv.style.visibility = "visible";
+  } else {
+    myDiv.style.visibility = "hidden";
+  }
+}
+
+function equationHTML(idNum, equation) {
+  document.getElementById("equation" + idNum).innerHTML = equation;
+  MathJax.typeset();
+}
+
+function definePivot(pivotIndex, equationIDNum, equation) {
+  color("green", pivotIndex, pivotIndex);
+  document.getElementById("tile" + pivotIndex).firstChild.data =
+    arr[pivotIndex];
+  equationHTML(equationIDNum, equation);
+}
+
+function showTitle1(title) {
+  document.getElementById("title1").innerHTML = title;
+  document.getElementById("title1").style.display = "flex";
+  document.getElementById("equation1").style.display = "flex";
+}
+
+function hideTitle1() {
+  document.getElementById("title1").style.display = "none";
+  document.getElementById("equation1").style.display = "none";
+}

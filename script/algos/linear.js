@@ -3,14 +3,16 @@ async function linearSearch(target) {
   await sleep(2000);
 
   for (let i = 0; i < arr.length; i++) {
-    colorPivot(i);
+    if (i === 0) {
+      definePivot(i, 0, "$$0$$");
+    } else {
+      definePivot(i, 0, "$$" + (i - 1) + "+1=" + i + "$$");
+    }
     await sleep(200);
-
     if (target === arr[i]) {
       found(target, i);
       return;
     }
-
     color("white", i, i);
     await sleep(200);
   }

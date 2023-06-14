@@ -12,7 +12,11 @@ async function sentinelSearch(target) {
 
   let i = 0;
   while (1) {
-    colorPivot(i);
+    if (i === 0) {
+      definePivot(i, 0, "$$0$$");
+    } else {
+      definePivot(i, 0, "$$" + (i - 1) + "+1=" + i + "$$");
+    }
     await sleep(200);
     if (arr[i] === target) {
       break;
@@ -22,7 +26,7 @@ async function sentinelSearch(target) {
     i++;
   }
 
-  colorPivot(i);
+  definePivot(i, 0, "$$" + (i - 1) + "+1=" + i + "$$");
   await sleep(2000);
 
   document.getElementById("tile" + (arr.length - 1)).firstChild.data = "";
@@ -33,7 +37,7 @@ async function sentinelSearch(target) {
   document.getElementById("tile" + (arr.length - 1)).firstChild.data = "?";
   await sleep(2000);
 
-  colorPivot(i);
+  definePivot(i, 0, "$$" + (i - 1) + "+1=" + i + "$$");
   await sleep(200);
   if (i < arr.length - 1 || arr[arr.length - 1] === target) {
     found(target, i);

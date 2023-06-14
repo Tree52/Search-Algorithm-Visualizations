@@ -6,7 +6,7 @@ async function exponentialSearch(target) {
   questionMarks();
   await sleep(2000);
 
-  colorPivot(0);
+  definePivot(0, 0, "$$0$$");
   await sleep(500);
   if (arr[0] === target) {
     found(target, 0);
@@ -17,7 +17,11 @@ async function exponentialSearch(target) {
 
   let i = 1;
   while (arr[i] <= target && i < arr.length) {
-    colorPivot(i);
+    if (i === 1) {
+      definePivot(i, 0, "$$1$$");
+    } else {
+      definePivot(i, 0, "$$" + i / 2 + "*2=" + i + "$$");
+    }
     await sleep(500);
     if (arr[i] === target) {
       found(target, i);
@@ -28,7 +32,11 @@ async function exponentialSearch(target) {
     i = i * 2;
   }
 
-  oobColor(i);
+  if (i === 1) {
+    oobColor(i, 0, "$$1$$");
+  } else {
+    oobColor(i, 0, "$$" + i / 2 + "*2=" + i + "$$");
+  }
   await sleep(4000);
 
   // Binary search:
@@ -37,7 +45,19 @@ async function exponentialSearch(target) {
 
   while (rightIndex >= leftIndex) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
-    colorPivot(pivot);
+    definePivot(
+      pivot,
+      0,
+      "$$" +
+        leftIndex +
+        "-\\left\\lfloor\\frac{" +
+        rightIndex +
+        "-" +
+        leftIndex +
+        "}{2}\\right\\rfloor=" +
+        pivot +
+        "$$"
+    );
     await sleep(2000);
 
     if (target < arr[pivot]) {

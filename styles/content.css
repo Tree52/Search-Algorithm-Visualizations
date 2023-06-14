@@ -29,11 +29,35 @@
   align-items: center;
 }
 
-#content {
+#contentContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
+  position: relative;
+}
+
+#content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+#sidebar {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 999;
+  margin: 0px;
+  height: 100%;
+  width: var(--sidebarWidth);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0px 4px;
 }
 
 #result {
@@ -41,4 +65,54 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#codeContainer {
+  position: absolute;
+  right: calc(var(--sidebarWidth) + 4px);
+  height: 100%;
+  min-width: 100px;
+  background-color: rgb(60, 60, 60);
+  display: flex;
+  flex-direction: column;
+}
+
+#code {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#codeContainer:hover {
+  opacity: 50%;
+}
+
+#codeContainer div {
+  font-size: 20px;
+  padding: 2px 8px;
+}
+
+.title,
+.equation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.equation {
+  height: 80px;
+}
+
+#code div {
+  padding: 0px;
+  font-size: 16px;
+}
+
+:root {
+  --sidebarWidth: 30px;
+}
+
+#title1,
+#equation1 {
+  display: none;
 }

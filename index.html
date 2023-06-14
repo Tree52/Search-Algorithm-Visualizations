@@ -16,8 +16,8 @@
   <body>
     <header>
       <div id="titles">
-          Unsorted List Algos: <br>
-          Sorted List Algos:
+          Unsorted Array Algos: <br>
+          Sorted Array Algos:
       </div>
 
       <ul>
@@ -28,10 +28,6 @@
         <li>
           <input type="radio" id="sentinel" name="algo" value="Sentinel Search" />
           <label for="sentinel">Sentinel</label>
-        </li>
-        <li>
-          <input type="radio" id="stupid" name="algo" value="Stupid Search" />
-          <label for="stupid">Stupid</label>
         </li>
       </ul>
       <ul>
@@ -70,8 +66,43 @@
       </ul>
     </header>
 
-    <div id="content">
+    <div id="contentContainer">
+      <div id="content">
 
+      </div>
+
+      <div id="codeContainer" style="visibility: hidden;">
+        <!-- <div class="title">
+          Code:
+        </div>
+        
+        <div id="code">
+          <div>
+            not done
+          </div>
+          <div>
+            &emsp;not done
+          </div>
+        </div> -->
+
+        <div class="title" id="title0">
+          Pivot:
+        </div>
+        <div class="equation" id="equation0">
+
+        </div>
+
+        <div class="title" id="title1">
+          
+        </div>
+        <div class="equation" id="equation1">
+
+        </div>
+      </div>
+
+      <button class="fa-solid fa-2xs fa-arrow-left" id="sidebar" onclick="openClose()">
+  
+      </button>
     </div>
 
     <div id="result">
@@ -79,13 +110,13 @@
     </div>
 
     <footer>
-      <button id="-" onclick="subtract()" style="background-color: red;" disabled>
+      <button id="-" onclick="pop()" style="background-color: red;" disabled>
         -
       </button>
       
       <input class="fa-solid" id="arr-numbox" type="text" placeholder="#, #, ...">
       
-      <button id="+" onclick="add()">
+      <button id="+" onclick="push()">
         +
       </button>
 
@@ -105,19 +136,20 @@
     </footer>
 
     <script src="https://kit.fontawesome.com/3b5c541e5c.js" crossorigin="anonymous"></script>
-    <script src="script/binary.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="script/color.js"></script>
-    <script src="script/exponential.js"></script>
-    <script src="script/fib.js"></script>
-    <script src="script/interpolation.js"></script>
-    <script src="script/jump.js"></script>
-    <script src="script/linear.js"></script>
     <script src="script/main.js"></script>
     <script src="script/mergeSort.js"></script>
-    <script src="script/meta.js"></script>
-    <script src="script/sentinel.js"></script>
-    <script src="script/stupid.js"></script>
-    <script src="script/ternary.js"></script>
-    <script src="script/ubiquitous.js"></script>
+    <script src="script/algos/binary.js"></script>
+    <script src="script/algos/exponential.js"></script>
+    <script src="script/algos/fib.js"></script>
+    <script src="script/algos/interpolation.js"></script>
+    <script src="script/algos/jump.js"></script>
+    <script src="script/algos/linear.js"></script>
+    <script src="script/algos/meta.js"></script>
+    <script src="script/algos/sentinel.js"></script>
+    <script src="script/algos/ternary.js"></script>
+    <script src="script/algos/ubiquitous.js"></script>
   </body>
 </html>

@@ -1,0 +1,45 @@
+async function binarySearch(target) {
+  if (!isSorted(arr)) {
+    sort();
+    await sleep(2000);
+  }
+  questionMarks();
+  await sleep(2000);
+
+  let leftIndex = 0;
+  let rightIndex = arr.length - 1;
+
+  while (rightIndex >= leftIndex) {
+    let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
+    definePivot(
+      pivot,
+      0,
+      "$$" +
+        leftIndex +
+        "-\\left\\lfloor\\frac{" +
+        rightIndex +
+        "-" +
+        leftIndex +
+        "}{2}\\right\\rfloor=" +
+        pivot +
+        "$$"
+    );
+    await sleep(2000);
+
+    if (target < arr[pivot]) {
+      color("white", pivot, arr.length - 1);
+      await sleep(2000);
+      rightIndex = pivot - 1;
+    } else if (target === arr[pivot]) {
+      found(target, pivot);
+      return;
+    } else {
+      color("white", 0, pivot);
+      await sleep(2000);
+      leftIndex = pivot + 1;
+    }
+  }
+
+  notFound();
+  return;
+}

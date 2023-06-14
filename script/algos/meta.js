@@ -1,4 +1,5 @@
 async function metaSearch(target) {
+  showTitle1("Candidate Pivot:");
   if (!isSorted(arr)) {
     sort();
     await sleep(2000);
@@ -16,7 +17,7 @@ async function metaSearch(target) {
 
   let pivot = 0;
   for (let i = numBitsNeededForMaxIndex - 1; i >= 0; i--) {
-    colorPivot(pivot);
+    definePivot(pivot, 0, "$$" + pivot + "$$");
     await sleep(2000);
     if (arr[pivot] === target) {
       found(target, pivot);
@@ -26,6 +27,10 @@ async function metaSearch(target) {
     await sleep(2000);
 
     let newPivotCandidate = pivot | (1 << i);
+    equationHTML(
+      1,
+      "$$" + pivot + "+2^{" + i + "}=" + newPivotCandidate + "$$"
+    );
 
     oobColor2(newPivotCandidate);
     await sleep(2000);
@@ -41,7 +46,7 @@ async function metaSearch(target) {
     await sleep(2000);
   }
 
-  colorPivot(pivot);
+  definePivot(pivot, 0, "$$" + pivot + "$$");
   await sleep(2000);
   if (arr[pivot] === target) {
     found(target, pivot);

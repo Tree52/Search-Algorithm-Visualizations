@@ -21,27 +21,46 @@ async function interpolationSearch(target) {
     target <= arr[rightIndex]
   ) {
     if (leftIndex === rightIndex) {
-      console.log("test");
-      colorPivot(pivot);
+      definePivot(leftIndex, 0, "$$" + leftIndex + "$$");
       await sleep(2000);
       if (arr[leftIndex] === target) {
         found(target, leftIndex);
         return leftIndex;
       }
-      color("white", pivot, pivot);
+      color("white", leftIndex, leftIndex);
       await sleep(2000);
       notFound();
       return;
     }
 
-    let pivot = Math.floor(
+    let pivot =
       leftIndex +
+      Math.floor(
         ((target - arr[leftIndex]) * (rightIndex - leftIndex)) /
           (arr[rightIndex] - arr[leftIndex])
-    );
-    console.log(pivot);
+      );
 
-    colorPivot(pivot);
+    definePivot(
+      pivot,
+      0,
+      "$$" +
+        leftIndex +
+        "+\\left\\lfloor\\frac{(" +
+        target +
+        "-" +
+        arr[leftIndex] +
+        ")(" +
+        rightIndex +
+        "-" +
+        leftIndex +
+        ")}{" +
+        arr[rightIndex] +
+        "-" +
+        arr[leftIndex] +
+        "}\\right\\rfloor=" +
+        pivot +
+        "$$"
+    );
     await sleep(2000);
     if (arr[pivot] === target) {
       found(target, pivot);

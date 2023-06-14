@@ -5,24 +5,21 @@ function color(color, startIndex, endIndex) {
   }
 }
 
-function colorPivot(pivot) {
-  color("green", pivot, pivot);
-  document.getElementById("tile" + pivot).firstChild.data = arr[pivot];
-}
-
-async function oobColor(i) {
+async function oobColor(i, equationIDNum, equation) {
   // oob === out of bounds
   if (i < arr.length) {
-    colorPivot(i);
+    definePivot(i, equationIDNum, equation);
     await sleep(2000);
     color("white", i, arr.length - 1);
     await sleep(2000);
   } else if (i === arr.length) {
+    equationHTML(equationIDNum, equation);
     newTile(arr.length, "", "green");
     await sleep(2000);
     removeTile(arr.length);
     await sleep(2000);
   } else {
+    equationHTML(equationIDNum, equation);
     newTile("", "...", "rgb(18, 18, 18)");
     newTile(i, "", "green");
     await sleep(2000);

@@ -101,7 +101,7 @@
       </div>
 
       <button class="fa-solid fa-2xs fa-arrow-left" id="sidebar" onclick="openCloseSidebar()">
-  
+
       </button>
     </div>
 
@@ -110,7 +110,15 @@
     </div>
 
     <footer>
-      <button id="-" onclick="pop()" style="background-color: red;" disabled>
+      <button class="fa-solid fa-arrow-left" id="left" onclick="previousState()" style="display: none;">
+
+      </button>
+
+      <button class="fa-solid fa-arrow-right" id="right" onclick="nextState()" style="display: none;">
+
+      </button>
+
+      <button id="-" onclick="pop()">
         -
       </button>
       
@@ -119,7 +127,7 @@
       <button id="+" onclick="push()">
         +
       </button>
-
+      
       <button class="fa-solid fa-clipboard" id="copy" onclick="copyToClipboard()">
 
       </button>
@@ -128,11 +136,11 @@
         Go
       </button>
 
-      <button class="fa-solid fa-rotate-right" id="reset" onclick="reset()">
+      <button class="fa-solid fa-rotate-right" id="reset" onclick="reset()" style="display: none;">
         
       </button>
 
-      <input class="fa-solid" id="target-numbox" type="text" placeholder="&#xf140">
+      <input class="fa-solid" id="target-numbox" type="text" placeholder="&#xf140" style="pointer-events: auto;">
     </footer>
 
     <script src="https://kit.fontawesome.com/3b5c541e5c.js" crossorigin="anonymous"></script>

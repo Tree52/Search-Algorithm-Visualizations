@@ -1,51 +1,38 @@
-async function exponentialSearch(target) {
-  if (!isSorted(arr)) {
-    sort();
-    await sleep(2000);
-  }
-  questionMarks();
-  await sleep(2000);
-
-  definePivot(0, 0, "$$0$$");
-  await sleep(500);
-  if (arr[0] === target) {
+function exponentialSearch(target, A) {
+  definePivot(A, 0, 0, "$$0$$");
+  saveState();
+  if (A[0] === target) {
     found(target, 0);
     return;
   }
   color("white", 0, 0);
-  await sleep(500);
+  saveState();
 
   let i = 1;
-  while (arr[i] <= target && i < arr.length) {
+  while (A[i] <= target && i < A.length) {
     if (i === 1) {
-      definePivot(i, 0, "$$1$$");
+      definePivot(A, i, 0, "$$1$$");
     } else {
-      definePivot(i, 0, "$$" + i / 2 + "*2=" + i + "$$");
+      definePivot(A, i, 0, "$$" + i / 2 + "*2=" + i + "$$");
     }
-    await sleep(500);
-    if (arr[i] === target) {
+    saveState();
+    if (A[i] === target) {
       found(target, i);
       return;
     }
     color("white", 0, i);
-    await sleep(500);
+    saveState();
     i = i * 2;
   }
 
-  if (i === 1) {
-    oobColor(i, 0, "$$1$$");
-  } else {
-    oobColor(i, 0, "$$" + i / 2 + "*2=" + i + "$$");
-  }
-  await sleep(4000);
-
   // Binary search:
   let leftIndex = i * 0.5 + 1;
-  let rightIndex = Math.min(i - 1, arr.length - 1);
+  let rightIndex = Math.min(i - 1, A.length - 1);
 
   while (rightIndex >= leftIndex) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
     definePivot(
+      A,
       pivot,
       0,
       "$$" +
@@ -58,18 +45,18 @@ async function exponentialSearch(target) {
         pivot +
         "$$"
     );
-    await sleep(2000);
+    saveState();
 
-    if (target < arr[pivot]) {
-      color("white", pivot, arr.length - 1);
-      await sleep(2000);
+    if (target < A[pivot]) {
+      color("white", pivot, A.length - 1);
+      saveState();
       rightIndex = pivot - 1;
-    } else if (target === arr[pivot]) {
+    } else if (target === A[pivot]) {
       found(target, pivot);
       return;
     } else {
       color("white", 0, pivot);
-      await sleep(2000);
+      saveState();
       leftIndex = pivot + 1;
     }
   }

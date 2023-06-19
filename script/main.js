@@ -1,4 +1,20 @@
 let arr = [];
+let state = [];
+let curState = 0;
+
+function StateStruct(
+  backgroundColors,
+  innerHTMLs,
+  equation,
+  equation2,
+  result
+) {
+  this.backgroundColors = backgroundColors;
+  this.innerHTMLs = innerHTMLs;
+  this.equation = equation;
+  this.equation2 = equation2;
+  this.result = result;
+}
 
 function newTile(idNum, innerHTML, backgroundColor) {
   const tileDiv = document.createElement("div");
@@ -46,10 +62,6 @@ function push() {
   }
 
   updateTiles();
-
-  if (arr.length !== 0) {
-    enableButton("-");
-  }
 }
 
 function pop() {
@@ -73,14 +85,6 @@ function pop() {
   }
 
   updateTiles();
-
-  if (arr.length === 0) {
-    disableButton("-");
-  }
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function go() {
@@ -101,52 +105,67 @@ function go() {
     throw new Error("Target is empty");
   }
 
-  disableButton("+");
-  disableButton("-");
-  disableButton("go");
-  disableButton("reset");
+  displayElement("reset");
+  displayElement("left");
+  displayElement("right");
+  hideElement("-");
+  hideElement("arr-numbox");
+  hideElement("+");
+  hideElement("copy");
+  hideElement("go");
+  document.getElementById("target-numbox").style.pointerEvents = "none";
 
-  // Store algorithm
   const algorithm = document.querySelector('input[name="algo"]:checked').value;
+  let sortedArr = mergeSort(arr);
 
-  // Run algorithm
+  saveState();
+
+  if (algorithm === "Linear Search" || algorithm === "Sentinel Search") {
+  } else {
+    clearDiv("content");
+    for (let i = 0; i < sortedArr.length; i++) {
+      newTile(i, sortedArr[i], "rgb(60, 60, 60)");
+    }
+    saveState();
+  }
+
+  questionMarks();
+  saveState();
+
   switch (algorithm) {
     case "Binary Search":
-      binarySearch(Number(targetAsString));
+      binarySearch(Number(targetAsString), sortedArr);
       break;
     case "Exponential Search":
-      exponentialSearch(Number(targetAsString));
+      exponentialSearch(Number(targetAsString), sortedArr);
       break;
     case "Fibonacci Search":
-      fibSearch(Number(targetAsString));
+      fibSearch(Number(targetAsString), sortedArr);
       break;
     case "Interpolation Search":
-      interpolationSearch(Number(targetAsString));
+      interpolationSearch(Number(targetAsString), sortedArr);
       break;
     case "Jump Search":
-      jumpSearch(Number(targetAsString));
+      jumpSearch(Number(targetAsString), sortedArr);
       break;
     case "Linear Search":
-      linearSearch(Number(targetAsString));
+      linearSearch(Number(targetAsString), arr);
       break;
     case "Meta Search":
-      metaSearch(Number(targetAsString));
+      metaSearch(Number(targetAsString), sortedArr);
       break;
     case "Sentinel Search":
-      sentinelSearch(Number(targetAsString));
+      sentinelSearch(Number(targetAsString), arr);
       break;
     case "Ternary Search":
-      ternarySearch(Number(targetAsString));
+      ternarySearch(Number(targetAsString), sortedArr);
       break;
     case "Ubiquitous Search":
-      ubiquitousSearch(Number(targetAsString));
+      ubiquitousSearch(Number(targetAsString), sortedArr);
       break;
   }
-}
 
-function sort() {
-  arr = mergeSort(arr);
-  updateTiles();
+  loadState0();
 }
 
 function clearDiv(id) {
@@ -154,34 +173,24 @@ function clearDiv(id) {
   myDiv.innerHTML = "";
 }
 
-function disableButton(id) {
-  let myButton = document.getElementById(id);
-  myButton.style.backgroundColor = "red";
-  myButton.disabled = true;
-}
-
-function enableButton(id) {
-  let myButton = document.getElementById(id);
-  myButton.style.backgroundColor = "rgb(60, 60, 60)";
-  myButton.disabled = false;
-}
-
 function reset() {
-  clearDiv("result");
-  clearDiv("equation0");
-  clearDiv("equation1");
-  hideTitle1();
-  updateTiles();
+  hideElement("title1");
+  hideElement("equation1");
 
-  color("rgb(60, 60, 60)", 0, arr.length - 1);
+  hideElement("reset");
+  hideElement("left");
+  hideElement("right");
+  displayElement("-");
+  displayElement("arr-numbox");
+  displayElement("+");
+  displayElement("copy");
+  displayElement("go");
+  document.getElementById("target-numbox").style.pointerEvents = "auto";
 
-  enableButton("+");
-  enableButton("-");
-  enableButton("go");
+  loadState0();
 
-  if (arr.length === 0) {
-    disableButton("-");
-  }
+  state = [];
+  curState = 0;
 }
 
 function updateTiles() {
@@ -199,12 +208,12 @@ function copyToClipboard() {
 function found(target, targetIndex) {
   document.getElementById("result").innerHTML =
     "Target " + target + " is in the array at index " + targetIndex;
-  enableButton("reset");
+  saveState();
 }
 
 function notFound() {
   document.getElementById("result").innerHTML = "Target is not in the array";
-  enableButton("reset");
+  saveState();
 }
 
 function questionMarks() {
@@ -212,8 +221,6 @@ function questionMarks() {
     document.getElementById("tile" + i).firstChild.data = "?";
   }
 }
-
-const isSorted = (arr) => arr.every((v, i, a) => !i || a[i - 1] <= v);
 
 function openCloseSidebar() {
   let sidebar = document.getElementById("sidebar");
@@ -232,10 +239,10 @@ function equationHTML(idNum, equation) {
   MathJax.typeset();
 }
 
-function definePivot(pivotIndex, equationIDNum, equation) {
+function definePivot(myArr, pivotIndex, equationIDNum, equation) {
   color("green", pivotIndex, pivotIndex);
   document.getElementById("tile" + pivotIndex).firstChild.data =
-    arr[pivotIndex];
+    myArr[pivotIndex];
   equationHTML(equationIDNum, equation);
 }
 
@@ -245,7 +252,83 @@ function showTitle1(title) {
   document.getElementById("equation1").style.display = "flex";
 }
 
-function hideTitle1() {
-  document.getElementById("title1").style.display = "none";
-  document.getElementById("equation1").style.display = "none";
+function loadState0() {
+  clearDiv("content");
+  for (let i = 0; i < arr.length; i++) {
+    newTile(i, state[0].innerHTMLs[i], state[0].backgroundColors[i]);
+  }
+
+  document.getElementById("equation0").innerHTML = state[0].equation;
+  document.getElementById("equation1").innerHTML = state[0].equation2;
+  document.getElementById("result").innerHTML = state[0].result;
+}
+
+function previousState() {
+  if (curState === 0) {
+    return;
+  }
+
+  curState--;
+
+  clearDiv("content");
+  for (let i = 0; i < arr.length; i++) {
+    newTile(
+      i,
+      state[curState].innerHTMLs[i],
+      state[curState].backgroundColors[i]
+    );
+  }
+
+  document.getElementById("equation0").innerHTML = state[curState].equation;
+  document.getElementById("equation1").innerHTML = state[curState].equation2;
+  document.getElementById("result").innerHTML = state[curState].result;
+}
+
+function nextState() {
+  if (curState === state.length - 1) {
+    return;
+  }
+
+  curState++;
+
+  clearDiv("content");
+  for (let i = 0; i < arr.length; i++) {
+    newTile(
+      i,
+      state[curState].innerHTMLs[i],
+      state[curState].backgroundColors[i]
+    );
+  }
+
+  document.getElementById("equation0").innerHTML = state[curState].equation;
+  document.getElementById("equation1").innerHTML = state[curState].equation2;
+  document.getElementById("result").innerHTML = state[curState].result;
+}
+
+function saveState() {
+  let backgroundColors = [];
+  let innerHTMLs = [];
+  let equation = document.getElementById("equation0").innerHTML;
+  let equation2 = document.getElementById("equation1").innerHTML;
+  let result = document.getElementById("result").innerHTML;
+
+  for (let i = 0; i < arr.length; i++) {
+    backgroundColors.push(
+      window.getComputedStyle(document.getElementById("tile" + i))
+        .backgroundColor
+    );
+    innerHTMLs.push(document.getElementById("tile" + i).firstChild.data);
+  }
+
+  state.push(
+    new StateStruct(backgroundColors, innerHTMLs, equation, equation2, result)
+  );
+}
+
+function displayElement(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function hideElement(id) {
+  document.getElementById(id).style.display = "none";
 }

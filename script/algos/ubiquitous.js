@@ -1,14 +1,7 @@
-async function ubiquitousSearch(target) {
+function ubiquitousSearch(target, A) {
   showTitle1("Ubiquitous Pivot:");
-  if (!isSorted(arr)) {
-    sort();
-    await sleep(2000);
-  }
-  questionMarks();
-  await sleep(2000);
-
   let leftIndex = 0;
-  let rightIndex = arr.length - 1;
+  let rightIndex = A.length - 1;
 
   while (rightIndex - leftIndex > 1) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
@@ -25,40 +18,40 @@ async function ubiquitousSearch(target) {
         pivot +
         "$$"
     );
-    document.getElementById("tile" + pivot).firstChild.data = arr[pivot];
-    await sleep(2000);
+    document.getElementById("tile" + pivot).firstChild.data = A[pivot];
+    saveState();
 
-    if (arr[pivot] <= target) {
+    if (A[pivot] <= target) {
       color("white", 0, pivot - 1);
-      await sleep(2000);
+      saveState();
       color("rgb(60, 60, 60)", pivot, pivot);
       leftIndex = pivot;
     } else {
-      color("white", pivot + 1, arr.length - 1);
-      await sleep(2000);
+      color("white", pivot + 1, A.length - 1);
+      saveState();
       color("rgb(60, 60, 60)", pivot, pivot);
       rightIndex = pivot;
     }
   }
 
   equationHTML(0, "");
-  definePivot(leftIndex, 0, "$$" + leftIndex + "$$");
-  await sleep(2000);
-  if (arr[leftIndex] === target) {
+  definePivot(A, leftIndex, 0, "$$" + leftIndex + "$$");
+  saveState();
+  if (A[leftIndex] === target) {
     found(target, leftIndex);
     return;
   }
   color("white", leftIndex, leftIndex);
-  await sleep(2000);
+  saveState();
 
-  definePivot(rightIndex, 0, "$$" + rightIndex + "$$");
-  await sleep(2000);
-  if (arr[rightIndex] === target) {
+  definePivot(A, rightIndex, 0, "$$" + rightIndex + "$$");
+  saveState();
+  if (A[rightIndex] === target) {
     found(target, rightIndex);
     return;
   }
   color("white", rightIndex, rightIndex);
-  await sleep(2000);
+  saveState();
 
   notFound();
   return;

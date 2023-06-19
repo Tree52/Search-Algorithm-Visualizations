@@ -1,34 +1,26 @@
-async function interpolationSearch(target) {
-  if (!isSorted(arr)) {
-    sort();
-    await sleep(2000);
-  }
-  questionMarks();
-  await sleep(2000);
-
+function interpolationSearch(target, A) {
   let leftIndex = 0;
-  let rightIndex = arr.length - 1;
+  let rightIndex = A.length - 1;
 
   color("lightgreen", leftIndex, leftIndex);
-  document.getElementById("tile" + leftIndex).firstChild.data = arr[leftIndex];
+  document.getElementById("tile" + leftIndex).firstChild.data = A[leftIndex];
   color("lightgreen", rightIndex, rightIndex);
-  document.getElementById("tile" + rightIndex).firstChild.data =
-    arr[rightIndex];
-  await sleep(2000);
+  document.getElementById("tile" + rightIndex).firstChild.data = A[rightIndex];
+  saveState();
   while (
     leftIndex <= rightIndex &&
-    target >= arr[leftIndex] &&
-    target <= arr[rightIndex]
+    target >= A[leftIndex] &&
+    target <= A[rightIndex]
   ) {
     if (leftIndex === rightIndex) {
-      definePivot(leftIndex, 0, "$$" + leftIndex + "$$");
-      await sleep(2000);
-      if (arr[leftIndex] === target) {
+      definePivot(A, leftIndex, 0, "$$" + leftIndex + "$$");
+      saveState();
+      if (A[leftIndex] === target) {
         found(target, leftIndex);
         return leftIndex;
       }
       color("white", leftIndex, leftIndex);
-      await sleep(2000);
+      saveState();
       notFound();
       return;
     }
@@ -36,11 +28,12 @@ async function interpolationSearch(target) {
     let pivot =
       leftIndex +
       Math.floor(
-        ((target - arr[leftIndex]) * (rightIndex - leftIndex)) /
-          (arr[rightIndex] - arr[leftIndex])
+        ((target - A[leftIndex]) * (rightIndex - leftIndex)) /
+          (A[rightIndex] - A[leftIndex])
       );
 
     definePivot(
+      A,
       pivot,
       0,
       "$$" +
@@ -48,44 +41,44 @@ async function interpolationSearch(target) {
         "+\\left\\lfloor\\frac{(" +
         target +
         "-" +
-        arr[leftIndex] +
+        A[leftIndex] +
         ")(" +
         rightIndex +
         "-" +
         leftIndex +
         ")}{" +
-        arr[rightIndex] +
+        A[rightIndex] +
         "-" +
-        arr[leftIndex] +
+        A[leftIndex] +
         "}\\right\\rfloor=" +
         pivot +
         "$$"
     );
-    await sleep(2000);
-    if (arr[pivot] === target) {
+    saveState();
+    if (A[pivot] === target) {
       found(target, pivot);
       return pivot;
     }
 
-    if (arr[pivot] < target) {
+    if (A[pivot] < target) {
       color("white", 0, pivot);
       leftIndex = pivot + 1;
       color("lightgreen", leftIndex, leftIndex);
       document.getElementById("tile" + leftIndex).firstChild.data =
-        arr[leftIndex];
-      await sleep(2000);
+        A[leftIndex];
+      saveState();
     } else {
-      color("white", pivot, arr.length - 1);
+      color("white", pivot, A.length - 1);
       rightIndex = pivot - 1;
       color("lightgreen", rightIndex, rightIndex);
       document.getElementById("tile" + rightIndex).firstChild.data =
-        arr[rightIndex];
-      await sleep(2000);
+        A[rightIndex];
+      saveState();
     }
   }
 
-  color("white", 0, arr.length - 1);
-  await sleep(2000);
+  color("white", 0, A.length - 1);
+  saveState();
   notFound();
   return;
 }

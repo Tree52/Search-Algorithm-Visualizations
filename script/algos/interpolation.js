@@ -2,9 +2,9 @@ function interpolationSearch(target, A) {
   let leftIndex = 0;
   let rightIndex = A.length - 1;
 
-  color("lightgreen", leftIndex, leftIndex);
+  colorTiles("lightgreen", leftIndex, leftIndex);
   document.getElementById("tile" + leftIndex).firstChild.data = A[leftIndex];
-  color("lightgreen", rightIndex, rightIndex);
+  colorTiles("lightgreen", rightIndex, rightIndex);
   document.getElementById("tile" + rightIndex).firstChild.data = A[rightIndex];
   saveState();
   while (
@@ -19,7 +19,7 @@ function interpolationSearch(target, A) {
         found(target, leftIndex);
         return leftIndex;
       }
-      color("white", leftIndex, leftIndex);
+      colorTiles("white", leftIndex, leftIndex);
       saveState();
       notFound();
       return;
@@ -61,23 +61,23 @@ function interpolationSearch(target, A) {
     }
 
     if (A[pivot] < target) {
-      color("white", 0, pivot);
+      colorTiles("white", 0, pivot);
       leftIndex = pivot + 1;
-      color("lightgreen", leftIndex, leftIndex);
+      colorTiles("lightgreen", leftIndex, leftIndex);
       document.getElementById("tile" + leftIndex).firstChild.data =
         A[leftIndex];
       saveState();
     } else {
-      color("white", pivot, A.length - 1);
+      colorTiles("white", pivot, A.length - 1);
       rightIndex = pivot - 1;
-      color("lightgreen", rightIndex, rightIndex);
+      colorTiles("lightgreen", rightIndex, rightIndex);
       document.getElementById("tile" + rightIndex).firstChild.data =
         A[rightIndex];
       saveState();
     }
   }
 
-  color("white", 0, A.length - 1);
+  colorTiles("white", 0, A.length - 1);
   saveState();
   notFound();
   return;

@@ -18,7 +18,7 @@ function jumpSearch(target, A) {
       found(target, i);
       return;
     }
-    color("white", 0, i);
+    colorTiles("white", 0, i);
     saveState();
   }
 
@@ -30,7 +30,7 @@ function jumpSearch(target, A) {
       "$$" + (i - jumpSize) + "+" + jumpSize + "=" + i + "$$"
     );
     saveState();
-    color("white", i, A.length - 1);
+    colorTiles("white", i, A.length - 1);
     saveState();
   }
 
@@ -60,7 +60,7 @@ function jumpSearch(target, A) {
       found(target, prevIndex);
       return;
     }
-    color("white", prevIndex, prevIndex);
+    colorTiles("white", prevIndex, prevIndex);
     saveState();
   }
 

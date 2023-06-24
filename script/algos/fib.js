@@ -30,7 +30,7 @@ function fibSearch(target, A) {
     saveState();
 
     if (target < A[pivot]) {
-      color("white", pivot, A.length - 1);
+      colorTiles("white", pivot, A.length - 1);
       saveState();
       fibC = fibA;
       fibB = fibB - fibA;
@@ -39,7 +39,7 @@ function fibSearch(target, A) {
       found(target, pivot);
       return;
     } else {
-      color("white", 0, pivot);
+      colorTiles("white", 0, pivot);
       saveState();
       fibC = fibB;
       fibB = fibA;
@@ -59,7 +59,7 @@ function fibSearch(target, A) {
     found(target, A.length - 1);
     return;
   }
-  color("white", A.length - 1, A.length - 1);
+  colorTiles("white", A.length - 1, A.length - 1);
   saveState();
 
   notFound();

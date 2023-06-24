@@ -18,13 +18,13 @@ function sentinelSearch(target, A) {
     if (A[i] === target) {
       break;
     }
-    color("white", i, i);
+    colorTiles("white", i, i);
     saveState();
     i++;
   }
 
   document.getElementById("tile" + (A.length - 1)).firstChild.data = "";
-  color("rgb(60, 60, 60)", A.length - 1, A.length - 1);
+  colorTiles("rgb(60, 60, 60)", A.length - 1, A.length - 1);
   saveState();
 
   A[A.length - 1] = last;
@@ -37,7 +37,7 @@ function sentinelSearch(target, A) {
     found(target, i);
     return;
   }
-  color("white", i, i);
+  colorTiles("white", i, i);
   saveState();
 
   notFound();

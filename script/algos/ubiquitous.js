@@ -1,11 +1,10 @@
 function ubiquitousSearch(target, A) {
-  showTitle1("Ubiquitous Pivot:");
   let leftIndex = 0;
   let rightIndex = A.length - 1;
 
   while (rightIndex - leftIndex > 1) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
-    color("lightgreen", pivot, pivot);
+    colorTiles("lightgreen", pivot, pivot);
     equationHTML(
       1,
       "$$" +
@@ -22,14 +21,14 @@ function ubiquitousSearch(target, A) {
     saveState();
 
     if (A[pivot] <= target) {
-      color("white", 0, pivot - 1);
+      colorTiles("white", 0, pivot - 1);
       saveState();
-      color("rgb(60, 60, 60)", pivot, pivot);
+      colorTiles("rgb(60, 60, 60)", pivot, pivot);
       leftIndex = pivot;
     } else {
-      color("white", pivot + 1, A.length - 1);
+      colorTiles("white", pivot + 1, A.length - 1);
       saveState();
-      color("rgb(60, 60, 60)", pivot, pivot);
+      colorTiles("rgb(60, 60, 60)", pivot, pivot);
       rightIndex = pivot;
     }
   }
@@ -41,7 +40,7 @@ function ubiquitousSearch(target, A) {
     found(target, leftIndex);
     return;
   }
-  color("white", leftIndex, leftIndex);
+  colorTiles("white", leftIndex, leftIndex);
   saveState();
 
   definePivot(A, rightIndex, 0, "$$" + rightIndex + "$$");
@@ -50,7 +49,7 @@ function ubiquitousSearch(target, A) {
     found(target, rightIndex);
     return;
   }
-  color("white", rightIndex, rightIndex);
+  colorTiles("white", rightIndex, rightIndex);
   saveState();
 
   notFound();

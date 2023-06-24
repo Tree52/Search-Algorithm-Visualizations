@@ -1,5 +1,4 @@
 function metaSearch(target, A) {
-  showTitle1("Candidate Pivot:");
   let numBitsNeededForMaxIndex = Math.ceil(Math.log2(A.length));
 
   clearDiv("result");
@@ -16,7 +15,7 @@ function metaSearch(target, A) {
       found(target, pivot);
       return;
     }
-    color("white", 0, pivot);
+    colorTiles("white", 0, pivot);
     saveState();
 
     let newPivotCandidate = pivot | (1 << i);
@@ -26,7 +25,7 @@ function metaSearch(target, A) {
     );
 
     if (newPivotCandidate < A.length) {
-      color("lightgreen", newPivotCandidate, newPivotCandidate);
+      colorTiles("lightgreen", newPivotCandidate, newPivotCandidate);
       document.getElementById("tile" + newPivotCandidate).firstChild.data =
         A[newPivotCandidate];
       saveState();
@@ -38,7 +37,7 @@ function metaSearch(target, A) {
       saveState();
       continue;
     }
-    color("white", newPivotCandidate, A.length - 1);
+    colorTiles("white", newPivotCandidate, A.length - 1);
     document.getElementById("empty-tile" + i).innerHTML = 0;
     saveState();
   }
@@ -49,7 +48,7 @@ function metaSearch(target, A) {
     found(target, pivot);
     return;
   }
-  color("white", pivot, pivot);
+  colorTiles("white", pivot, pivot);
   saveState();
 
   notFound();

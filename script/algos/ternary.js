@@ -1,5 +1,4 @@
 function ternarySearch(target, A) {
-  showTitle1("Pivot 2:");
   let leftIndex = 0;
   let rightIndex = A.length - 1;
 
@@ -48,17 +47,17 @@ function ternarySearch(target, A) {
 
     if (target < A[pivot1]) {
       rightIndex = pivot1 - 1;
-      color("white", pivot1, A.length - 1);
+      colorTiles("white", pivot1, A.length - 1);
       saveState();
     } else if (target > A[pivot2]) {
       leftIndex = pivot2 + 1;
-      color("white", 0, pivot2);
+      colorTiles("white", 0, pivot2);
       saveState();
     } else {
       leftIndex = pivot1 + 1;
       rightIndex = pivot2 - 1;
-      color("white", 0, pivot1);
-      color("white", pivot2, A.length - 1);
+      colorTiles("white", 0, pivot1);
+      colorTiles("white", pivot2, A.length - 1);
       saveState();
     }
   }

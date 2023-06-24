@@ -21,14 +21,14 @@ function binarySearch(target, A) {
     saveState();
 
     if (target < A[pivot]) {
-      color("white", pivot, A.length - 1);
+      colorTiles("white", pivot, A.length - 1);
       saveState();
       rightIndex = pivot - 1;
     } else if (target === A[pivot]) {
       found(target, pivot);
       return;
     } else {
-      color("white", 0, pivot);
+      colorTiles("white", 0, pivot);
       saveState();
       leftIndex = pivot + 1;
     }

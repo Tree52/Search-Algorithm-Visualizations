@@ -88,7 +88,6 @@
 
 #codeContainer div {
   font-size: 20px;
-  padding: 2px 8px;
 }
 
 .title,
@@ -103,7 +102,6 @@
 }
 
 #code div {
-  padding: 0px;
   font-size: 16px;
 }
 
@@ -114,4 +112,8 @@
 #title1,
 #equation1 {
   display: none;
+}
+
+.line {
+  padding: 0px 10px;
 }

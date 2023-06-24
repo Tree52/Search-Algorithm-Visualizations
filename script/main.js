@@ -7,13 +7,15 @@ function StateStruct(
   innerHTMLs,
   equation,
   equation2,
-  result
+  result,
+  codeLine
 ) {
   this.backgroundColors = backgroundColors;
   this.innerHTMLs = innerHTMLs;
   this.equation = equation;
   this.equation2 = equation2;
   this.result = result;
+  this.codeLine = codeLine;
 }
 
 function newTile(idNum, innerHTML, backgroundColor) {
@@ -138,18 +140,31 @@ function go() {
       jumpSearch(Number(targetAsString), sortedArr);
       break;
     case "Linear Search":
+      newCodeLine(0, "function linearSearch(target, A) {");
+      newCodeLine(1, "&emsp;for (let i = 0; i < A.length; i++) {");
+      newCodeLine(2, "&emsp;&emsp;if (target === A[i]) {");
+      newCodeLine(3, "&emsp;&emsp;&emsp;return i;");
+      newCodeLine(4, "&emsp;&emsp;}");
+      newCodeLine(5, "&emsp;}");
+      newCodeLine(6, "&emsp;");
+      newCodeLine(7, "&emsp;return -1;");
+      newCodeLine(8, "}");
+      codeLines = 9;
       linearSearch(Number(targetAsString), arr);
       break;
     case "Meta Search":
+      showTitle1("Candidate Pivot:");  
       metaSearch(Number(targetAsString), sortedArr);
       break;
     case "Sentinel Search":
       sentinelSearch(Number(targetAsString), arr);
       break;
     case "Ternary Search":
+      showTitle1("Pivot 2:");
       ternarySearch(Number(targetAsString), sortedArr);
       break;
     case "Ubiquitous Search":
+      showTitle1("Ubiquitous Pivot:");
       ubiquitousSearch(Number(targetAsString), sortedArr);
       break;
   }
@@ -163,6 +178,8 @@ function clearDiv(id) {
 }
 
 function reset() {
+  clearDiv("code");
+
   hideElement("title1");
   hideElement("equation1");
 
@@ -229,7 +246,7 @@ function equationHTML(idNum, equation) {
 }
 
 function definePivot(myArr, pivotIndex, equationIDNum, equation) {
-  color("green", pivotIndex, pivotIndex);
+  colorTiles("green", pivotIndex, pivotIndex);
   document.getElementById("tile" + pivotIndex).firstChild.data =
     myArr[pivotIndex];
   equationHTML(equationIDNum, equation);
@@ -250,6 +267,13 @@ function loadState0() {
   document.getElementById("equation0").innerHTML = state[0].equation;
   document.getElementById("equation1").innerHTML = state[0].equation2;
   document.getElementById("result").innerHTML = state[0].result;
+
+  let codeDiv = document.getElementById("code");
+  let numCodeLines = codeDiv.getElementsByTagName("div").length;
+  for (let i = 0; i < numCodeLines; i++) {
+    document.getElementById("line" + i).style.backgroundColor = "rgb(60, 60, 60)";
+    document.getElementById("line" + i).style.color = "white";      
+  }
 }
 
 function previousState() {
@@ -271,6 +295,7 @@ function previousState() {
   document.getElementById("equation0").innerHTML = state[curState].equation;
   document.getElementById("equation1").innerHTML = state[curState].equation2;
   document.getElementById("result").innerHTML = state[curState].result;
+  colorCodeLine(state[curState].codeLine);
 }
 
 function nextState() {
@@ -292,6 +317,7 @@ function nextState() {
   document.getElementById("equation0").innerHTML = state[curState].equation;
   document.getElementById("equation1").innerHTML = state[curState].equation2;
   document.getElementById("result").innerHTML = state[curState].result;
+  colorCodeLine(state[curState].codeLine);
 }
 
 function saveState() {
@@ -300,6 +326,16 @@ function saveState() {
   let equation = document.getElementById("equation0").innerHTML;
   let equation2 = document.getElementById("equation1").innerHTML;
   let result = document.getElementById("result").innerHTML;
+  let codeLine = -1;
+
+  let codeDiv = document.getElementById("code");
+  let numCodeLines = codeDiv.getElementsByTagName("div").length;
+  for (let i = 0; i < numCodeLines; i++) {
+    if (window.getComputedStyle(document.getElementById("line" + i)).color === "rgb(60, 60, 60)") {
+      codeLine = i;
+      break;
+    }
+  }
 
   for (let i = 0; i < arr.length; i++) {
     backgroundColors.push(
@@ -310,7 +346,7 @@ function saveState() {
   }
 
   state.push(
-    new StateStruct(backgroundColors, innerHTMLs, equation, equation2, result)
+    new StateStruct(backgroundColors, innerHTMLs, equation, equation2, result, codeLine)
   );
 }
 
@@ -332,4 +368,8 @@ function appendDiv(parentID, childID, className, innerHTML) {
   myDiv.id = childID;
   myDiv.innerHTML = innerHTML;
   document.getElementById(parentID).append(myDiv);
+}
+
+function newCodeLine(idNum, innerHTML) {
+  appendDiv("code", "line" + idNum, "line", innerHTML);
 }

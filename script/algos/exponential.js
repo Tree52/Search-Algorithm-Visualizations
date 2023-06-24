@@ -5,7 +5,7 @@ function exponentialSearch(target, A) {
     found(target, 0);
     return;
   }
-  color("white", 0, 0);
+  colorTiles("white", 0, 0);
   saveState();
 
   let i = 1;
@@ -20,7 +20,7 @@ function exponentialSearch(target, A) {
       found(target, i);
       return;
     }
-    color("white", 0, i);
+    colorTiles("white", 0, i);
     saveState();
     i = i * 2;
   }
@@ -48,14 +48,14 @@ function exponentialSearch(target, A) {
     saveState();
 
     if (target < A[pivot]) {
-      color("white", pivot, A.length - 1);
+      colorTiles("white", pivot, A.length - 1);
       saveState();
       rightIndex = pivot - 1;
     } else if (target === A[pivot]) {
       found(target, pivot);
       return;
     } else {
-      color("white", 0, pivot);
+      colorTiles("white", 0, pivot);
       saveState();
       leftIndex = pivot + 1;
     }

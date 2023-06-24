@@ -17,24 +17,13 @@ function StateStruct(
 }
 
 function newTile(idNum, innerHTML, backgroundColor) {
-  const tileDiv = document.createElement("div");
-  const indexDiv = document.createElement("div");
-  tileDiv.className = "tile";
-  indexDiv.className = "index";
-  tileDiv.id = "tile" + idNum;
-  indexDiv.id = "index" + idNum;
-  tileDiv.innerHTML = innerHTML;
-  indexDiv.innerHTML = idNum;
-  tileDiv.style.backgroundColor = backgroundColor;
-  document.getElementById("content").append(tileDiv);
-  document.getElementById("tile" + idNum).append(indexDiv);
+  appendDiv("content", "tile" + idNum, "tile", innerHTML);
+  appendDiv("tile" + idNum, "index" + idNum, "index", idNum);
+  document.getElementById("tile" + idNum).style.backgroundColor = backgroundColor;
 }
 
 function newEmptyTile(idNum) {
-  const tileDiv = document.createElement("div");
-  tileDiv.className = "empty-tile";
-  tileDiv.id = "empty-tile" + idNum;
-  document.getElementById("result").append(tileDiv);
+  appendDiv("result", "empty-tile" + idNum, "empty-tile", "");
 }
 
 function removeTile(idNum) {
@@ -335,4 +324,12 @@ function displayFlexElement(id) {
 
 function hideElement(id) {
   document.getElementById(id).style.display = "none";
+}
+
+function appendDiv(parentID, childID, className, innerHTML) {
+  const myDiv = document.createElement("div");
+  myDiv.className = className;
+  myDiv.id = childID;
+  myDiv.innerHTML = innerHTML;
+  document.getElementById(parentID).append(myDiv);
 }

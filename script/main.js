@@ -248,8 +248,8 @@ function definePivot(myArr, pivotIndex, equationIDNum, equation) {
 
 function showTitle1(title) {
   document.getElementById("title1").innerHTML = title;
-  document.getElementById("title1").style.display = "flex";
-  document.getElementById("equation1").style.display = "flex";
+  displayFlexElement("title1");
+  displayFlexElement("equation1");
 }
 
 function loadState0() {
@@ -327,6 +327,10 @@ function saveState() {
 
 function displayElement(id) {
   document.getElementById(id).style.display = "block";
+}
+
+function displayFlexElement(id) {
+  document.getElementById(id).style.display = "flex";
 }
 
 function hideElement(id) {

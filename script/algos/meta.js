@@ -7,50 +7,73 @@ function metaSearch(target, A) {
   }
   saveState();
 
-  let pivot = 0;
+  let cutoff = 0;
   for (let i = numBitsNeededForMaxIndex - 1; i >= 0; i--) {
-    definePivot(A, pivot, 0, "$$" + pivot + "$$");
+    definePivot(A, cutoff, 0, "$$" + cutoff + "$$");
     saveState();
-    if (A[pivot] === target) {
-      found(target, pivot);
-      return;
+    if (A[cutoff] === target) {
+      found(target, cutoff);
+      return cutoff;
     }
-    colorTiles("white", 0, pivot);
+    colorTiles("white", 0, cutoff);
     saveState();
 
-    let newPivotCandidate = pivot | (1 << i);
-    equationHTML(
-      1,
-      "$$" + pivot + "+2^{" + i + "}=" + newPivotCandidate + "$$"
-    );
+    let cutoffCandidate = cutoff | (1 << i);
+    equationHTML(1, "$$" + cutoff + "+2^{" + i + "}=" + cutoffCandidate + "$$");
 
-    if (newPivotCandidate < A.length) {
-      colorTiles("lightgreen", newPivotCandidate, newPivotCandidate);
-      document.getElementById("tile" + newPivotCandidate).firstChild.data =
-        A[newPivotCandidate];
+    if (cutoffCandidate < A.length) {
+      colorTiles("lightgreen", cutoffCandidate, cutoffCandidate);
+      document.getElementById("tile" + cutoffCandidate).firstChild.data =
+        A[cutoffCandidate];
       saveState();
     }
 
-    if (newPivotCandidate < A.length && A[newPivotCandidate] <= target) {
-      pivot = newPivotCandidate;
+    if (cutoffCandidate < A.length && A[cutoffCandidate] <= target) {
+      cutoff = cutoffCandidate;
       document.getElementById("empty-tile" + i).innerHTML = 1;
       saveState();
       continue;
     }
-    colorTiles("white", newPivotCandidate, A.length - 1);
+    colorTiles("white", cutoffCandidate, A.length - 1);
     document.getElementById("empty-tile" + i).innerHTML = 0;
     saveState();
   }
 
-  definePivot(A, pivot, 0, "$$" + pivot + "$$");
+  definePivot(A, cutoff, 0, "$$" + cutoff + "$$");
   saveState();
-  if (A[pivot] === target) {
-    found(target, pivot);
-    return;
+  if (A[cutoff] === target) {
+    found(target, cutoff);
+    return cutoff;
   }
-  colorTiles("white", pivot, pivot);
+  colorTiles("white", cutoff, cutoff);
   saveState();
 
   notFound();
-  return;
+  return -1;
+}
+
+// prettier-ignore
+function metaCode() {
+  newCodeLine("function metaSearch(target, A) {");
+  newCodeLine("&emsp;let numBitsNeededForMaxIndex = Math.ceil(Math.log2(A.length));");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;let cutoff = 0;");
+  newCodeLine("&emsp;for (let i = numBitsNeededForMaxIndex - 1; i >= 0; i--) {");
+  newCodeLine("&emsp;&emsp;if (A[cutoff] === target) {");
+  newCodeLine("&emsp;&emsp;&emsp;return cutoff;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;let cutoffCandidate = cutoff | (1 << i);");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;if (cutoffCandidate < A.length && A[cutoffCandidate] <= target) {");
+  newCodeLine("&emsp;&emsp;&emsp;cutoff = cutoffCandidate;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;if (A[cutoff] === target) {");
+  newCodeLine("&emsp;&emsp;return cutoff;");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;return -1;");
+  newCodeLine("}");
 }

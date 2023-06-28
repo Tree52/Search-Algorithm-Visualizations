@@ -16,7 +16,7 @@ function jumpSearch(target, A) {
     saveState();
     if (A[i] === target) {
       found(target, i);
-      return;
+      return i;
     }
     colorTiles("white", 0, i);
     saveState();
@@ -58,12 +58,40 @@ function jumpSearch(target, A) {
     saveState();
     if (A[prevIndex] === target) {
       found(target, prevIndex);
-      return;
+      return prevIndex;
     }
     colorTiles("white", prevIndex, prevIndex);
     saveState();
   }
 
   notFound();
-  return;
+  return -1;
+}
+
+// prettier-ignore
+function jumpCode() {
+  newCodeLine("function jumpSearch(target, A) {");
+  newCodeLine("&emsp;let jumpSize = Math.floor(Math.sqrt(A.length));");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;let i = 0;");
+  newCodeLine("&emsp;for (; A[i] <= target; i += jumpSize) {");
+  newCodeLine("&emsp;&emsp;if (A[i] === target) {");
+  newCodeLine("&emsp;&emsp;&emsp;return i;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;// Linear Search:");
+  newCodeLine("&emsp;for (");
+  newCodeLine("&emsp;&emsp;let prevIndex = i - jumpSize + 1;");
+  newCodeLine("&emsp;&emsp;prevIndex < i && prevIndex !== A.length && prevIndex >= 0;");
+  newCodeLine("&emsp;&emsp;prevIndex++");
+  newCodeLine("&emsp;) {");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;if (A[prevIndex] === target) {");
+  newCodeLine("&emsp;&emsp;&emsp;return prevIndex;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;return -1;");
+  newCodeLine("}");
 }

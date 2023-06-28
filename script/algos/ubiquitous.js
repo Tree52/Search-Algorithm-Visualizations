@@ -6,7 +6,7 @@ function ubiquitousSearch(target, A) {
     let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
     colorTiles("lightgreen", pivot, pivot);
     equationHTML(
-      1,
+      0,
       "$$" +
         leftIndex +
         "-\\left\\lfloor\\frac{" +
@@ -33,12 +33,11 @@ function ubiquitousSearch(target, A) {
     }
   }
 
-  equationHTML(0, "");
   definePivot(A, leftIndex, 0, "$$" + leftIndex + "$$");
   saveState();
   if (A[leftIndex] === target) {
     found(target, leftIndex);
-    return;
+    return leftIndex;
   }
   colorTiles("white", leftIndex, leftIndex);
   saveState();
@@ -47,11 +46,39 @@ function ubiquitousSearch(target, A) {
   saveState();
   if (A[rightIndex] === target) {
     found(target, rightIndex);
-    return;
+    return rightIndex;
   }
   colorTiles("white", rightIndex, rightIndex);
   saveState();
 
   notFound();
-  return;
+  return -1;
+}
+
+// prettier-ignore
+function ubiquitousCode() {
+  newCodeLine("function ubiquitousSearch(target, A) {");
+  newCodeLine("&emsp;let leftIndex = 0;");
+  newCodeLine("&emsp;let rightIndex = A.length - 1;");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;while (rightIndex - leftIndex > 1) {");
+  newCodeLine("&emsp;&emsp;let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;if (A[pivot] <= target) {");
+  newCodeLine("&emsp;&emsp;&emsp;leftIndex = pivot;");
+  newCodeLine("&emsp;&emsp;} else {");
+  newCodeLine("&emsp;&emsp;&emsp;rightIndex = pivot;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;if (A[leftIndex] === target) {");
+  newCodeLine("&emsp;&emsp;return leftIndex;");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;if (A[rightIndex] === target) {");
+  newCodeLine("&emsp;&emsp;return rightIndex;");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;return -1;");
+  newCodeLine("}");
 }

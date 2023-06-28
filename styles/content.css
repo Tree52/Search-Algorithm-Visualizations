@@ -92,9 +92,13 @@
 
 .title,
 .equation {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
+}
+
+#codeTitle {
+  display: flex;
 }
 
 .equation {
@@ -107,11 +111,6 @@
 
 :root {
   --sidebarWidth: 30px;
-}
-
-#title1,
-#equation1 {
-  display: none;
 }
 
 .line {

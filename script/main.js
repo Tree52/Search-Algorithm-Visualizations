@@ -1,6 +1,7 @@
 let arr = [];
 let state = [];
 let curState = 0;
+let numCodeLines = 0;
 
 function StateStruct(
   backgroundColors,
@@ -21,7 +22,8 @@ function StateStruct(
 function newTile(idNum, innerHTML, backgroundColor) {
   appendDiv("content", "tile" + idNum, "tile", innerHTML);
   appendDiv("tile" + idNum, "index" + idNum, "index", idNum);
-  document.getElementById("tile" + idNum).style.backgroundColor = backgroundColor;
+  document.getElementById("tile" + idNum).style.backgroundColor =
+    backgroundColor;
 }
 
 function newEmptyTile(idNum) {
@@ -111,8 +113,7 @@ function go() {
 
   saveState();
 
-  if (algorithm === "Linear Search" || algorithm === "Sentinel Search") {
-  } else {
+  if (algorithm !== "Linear Search" && algorithm !== "Sentinel Search") {
     clearDiv("content");
     for (let i = 0; i < sortedArr.length; i++) {
       newTile(i, sortedArr[i], "rgb(60, 60, 60)");
@@ -125,46 +126,55 @@ function go() {
 
   switch (algorithm) {
     case "Binary Search":
+      binaryCode();
+      showTitle(0, "pivot:");
       binarySearch(Number(targetAsString), sortedArr);
       break;
     case "Exponential Search":
+      exponentialCode();
+      showTitle(0, "pivot:");
       exponentialSearch(Number(targetAsString), sortedArr);
       break;
     case "Fibonacci Search":
-      fibSearch(Number(targetAsString), sortedArr);
+      fibonacciCode();
+      showTitle(0, "pivot:");
+      fibonacciSearch(Number(targetAsString), sortedArr);
       break;
     case "Interpolation Search":
+      interpolationCode();
+      showTitle(0, "pivot:");
       interpolationSearch(Number(targetAsString), sortedArr);
       break;
     case "Jump Search":
+      jumpCode();
+      showTitle(0, "pivot:");
       jumpSearch(Number(targetAsString), sortedArr);
       break;
     case "Linear Search":
-      newCodeLine(0, "function linearSearch(target, A) {");
-      newCodeLine(1, "&emsp;for (let i = 0; i < A.length; i++) {");
-      newCodeLine(2, "&emsp;&emsp;if (target === A[i]) {");
-      newCodeLine(3, "&emsp;&emsp;&emsp;return i;");
-      newCodeLine(4, "&emsp;&emsp;}");
-      newCodeLine(5, "&emsp;}");
-      newCodeLine(6, "&emsp;");
-      newCodeLine(7, "&emsp;return -1;");
-      newCodeLine(8, "}");
-      codeLines = 9;
+      linearCode();
+      showTitle(0, "i:");
       linearSearch(Number(targetAsString), arr);
       break;
     case "Meta Search":
-      showTitle1("Candidate Pivot:");  
+      metaCode();
+      showTitle(0, "cutoff:");
+      showTitle(1, "cutoffCandidate:");
       metaSearch(Number(targetAsString), sortedArr);
       break;
     case "Sentinel Search":
+      sentinelCode();
+      showTitle(0, "i:");
       sentinelSearch(Number(targetAsString), arr);
       break;
     case "Ternary Search":
-      showTitle1("Pivot 2:");
+      ternaryCode();
+      showTitle(0, "pivot1:");
+      showTitle(1, "pivot2:");
       ternarySearch(Number(targetAsString), sortedArr);
       break;
     case "Ubiquitous Search":
-      showTitle1("Ubiquitous Pivot:");
+      ubiquitousCode();
+      showTitle(0, "(Ubiquitous) pivot:");
       ubiquitousSearch(Number(targetAsString), sortedArr);
       break;
   }
@@ -180,6 +190,8 @@ function clearDiv(id) {
 function reset() {
   clearDiv("code");
 
+  hideElement("title0");
+  hideElement("equation0");
   hideElement("title1");
   hideElement("equation1");
 
@@ -197,6 +209,7 @@ function reset() {
 
   state = [];
   curState = 0;
+  numCodeLines = 0;
 }
 
 function updateTiles() {
@@ -252,16 +265,18 @@ function definePivot(myArr, pivotIndex, equationIDNum, equation) {
   equationHTML(equationIDNum, equation);
 }
 
-function showTitle1(title) {
-  document.getElementById("title1").innerHTML = title;
-  displayFlexElement("title1");
-  displayFlexElement("equation1");
+function showTitle(idNum, title) {
+  document.getElementById("title" + idNum).innerHTML = title;
+  displayFlexElement("title" + idNum);
+  displayFlexElement("equation" + idNum);
 }
 
 function loadState0() {
-  clearDiv("content");
   for (let i = 0; i < arr.length; i++) {
-    newTile(i, state[0].innerHTMLs[i], state[0].backgroundColors[i]);
+    document.getElementById("tile" + i).firstChild.data =
+      state[0].innerHTMLs[i];
+    document.getElementById("tile" + i).style.backgroundColor =
+      state[0].backgroundColors[i];
   }
 
   document.getElementById("equation0").innerHTML = state[0].equation;
@@ -271,8 +286,9 @@ function loadState0() {
   let codeDiv = document.getElementById("code");
   let numCodeLines = codeDiv.getElementsByTagName("div").length;
   for (let i = 0; i < numCodeLines; i++) {
-    document.getElementById("line" + i).style.backgroundColor = "rgb(60, 60, 60)";
-    document.getElementById("line" + i).style.color = "white";      
+    document.getElementById("line" + i).style.backgroundColor =
+      "rgb(60, 60, 60)";
+    document.getElementById("line" + i).style.color = "white";
   }
 }
 
@@ -283,19 +299,17 @@ function previousState() {
 
   curState--;
 
-  clearDiv("content");
   for (let i = 0; i < arr.length; i++) {
-    newTile(
-      i,
-      state[curState].innerHTMLs[i],
-      state[curState].backgroundColors[i]
-    );
+    document.getElementById("tile" + i).firstChild.data =
+      state[curState].innerHTMLs[i];
+    document.getElementById("tile" + i).style.backgroundColor =
+      state[curState].backgroundColors[i];
   }
 
   document.getElementById("equation0").innerHTML = state[curState].equation;
   document.getElementById("equation1").innerHTML = state[curState].equation2;
   document.getElementById("result").innerHTML = state[curState].result;
-  colorCodeLine(state[curState].codeLine);
+  // colorCodeLine(state[curState].codeLine);
 }
 
 function nextState() {
@@ -305,19 +319,17 @@ function nextState() {
 
   curState++;
 
-  clearDiv("content");
   for (let i = 0; i < arr.length; i++) {
-    newTile(
-      i,
-      state[curState].innerHTMLs[i],
-      state[curState].backgroundColors[i]
-    );
+    document.getElementById("tile" + i).firstChild.data =
+      state[curState].innerHTMLs[i];
+    document.getElementById("tile" + i).style.backgroundColor =
+      state[curState].backgroundColors[i];
   }
 
   document.getElementById("equation0").innerHTML = state[curState].equation;
   document.getElementById("equation1").innerHTML = state[curState].equation2;
   document.getElementById("result").innerHTML = state[curState].result;
-  colorCodeLine(state[curState].codeLine);
+  // colorCodeLine(state[curState].codeLine);
 }
 
 function saveState() {
@@ -331,7 +343,10 @@ function saveState() {
   let codeDiv = document.getElementById("code");
   let numCodeLines = codeDiv.getElementsByTagName("div").length;
   for (let i = 0; i < numCodeLines; i++) {
-    if (window.getComputedStyle(document.getElementById("line" + i)).color === "rgb(60, 60, 60)") {
+    if (
+      window.getComputedStyle(document.getElementById("line" + i)).color ===
+      "rgb(60, 60, 60)"
+    ) {
       codeLine = i;
       break;
     }
@@ -346,7 +361,14 @@ function saveState() {
   }
 
   state.push(
-    new StateStruct(backgroundColors, innerHTMLs, equation, equation2, result, codeLine)
+    new StateStruct(
+      backgroundColors,
+      innerHTMLs,
+      equation,
+      equation2,
+      result,
+      codeLine
+    )
   );
 }
 
@@ -370,6 +392,11 @@ function appendDiv(parentID, childID, className, innerHTML) {
   document.getElementById(parentID).append(myDiv);
 }
 
-function newCodeLine(idNum, innerHTML) {
-  appendDiv("code", "line" + idNum, "line", innerHTML);
+// Note: for doing the code functions fast.
+// 1. Copy the entire search function and paste it into the code function.
+// 2. Delete the non-algorithm relevant lines of code.
+// 3. You got it from here.
+function newCodeLine(innerHTML) {
+  appendDiv("code", "line" + numCodeLines, "line", innerHTML);
+  numCodeLines++;
 }

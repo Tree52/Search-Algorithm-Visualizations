@@ -63,5 +63,37 @@ function ternarySearch(target, A) {
   }
 
   notFound();
-  return;
+  return -1;
+}
+
+// prettier-ignore
+function ternaryCode() {
+  newCodeLine("function ternarySearch(target, A) {");
+  newCodeLine("&emsp;let leftIndex = 0;");
+  newCodeLine("&emsp;let rightIndex = A.length - 1;");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;while (rightIndex >= leftIndex) {");
+  newCodeLine("&emsp;&emsp;let pivot1 = leftIndex + Math.floor((rightIndex - leftIndex) / 3);");
+  newCodeLine("&emsp;&emsp;let pivot2 = rightIndex - Math.floor((rightIndex - leftIndex) / 3);");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;if (A[pivot1] === target) {");
+  newCodeLine("&emsp;&emsp;&emsp;return pivot1;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;if (A[pivot2] === target) {");
+  newCodeLine("&emsp;&emsp;&emsp;return pivot2;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;if (target < A[pivot1]) {");
+  newCodeLine("&emsp;&emsp;&emsp;rightIndex = pivot1 - 1;");
+  newCodeLine("&emsp;&emsp;} else if (target > A[pivot2]) {");
+  newCodeLine("&emsp;&emsp;&emsp;leftIndex = pivot2 + 1;");
+  newCodeLine("&emsp;&emsp;} else {");
+  newCodeLine("&emsp;&emsp;&emsp;leftIndex = pivot1 + 1;");
+  newCodeLine("&emsp;&emsp;&emsp;rightIndex = pivot2 - 1;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;return -1;");
+  newCodeLine("}");
 }

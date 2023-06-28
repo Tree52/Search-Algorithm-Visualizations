@@ -26,7 +26,7 @@ function binarySearch(target, A) {
       rightIndex = pivot - 1;
     } else if (target === A[pivot]) {
       found(target, pivot);
-      return;
+      return pivot;
     } else {
       colorTiles("white", 0, pivot);
       saveState();
@@ -35,5 +35,27 @@ function binarySearch(target, A) {
   }
 
   notFound();
-  return;
+  return -1;
+}
+
+// prettier-ignore
+function binaryCode() {
+  newCodeLine("function binarySearch(target, A) {");
+  newCodeLine("&emsp;let leftIndex = 0;");
+  newCodeLine("&emsp;let rightIndex = A.length - 1;");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;while (rightIndex >= leftIndex) {");
+  newCodeLine("&emsp;&emsp;let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;if (target < A[pivot]) {");
+  newCodeLine("&emsp;&emsp;&emsp;rightIndex = pivot - 1;");
+  newCodeLine("&emsp;&emsp;} else if (target === A[pivot]) {");
+  newCodeLine("&emsp;&emsp;&emsp;return i;");
+  newCodeLine("&emsp;&emsp;} else {");
+  newCodeLine("&emsp;&emsp;&emsp;leftIndex = pivot + 1;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;return -1;");
+  newCodeLine("}");
 }

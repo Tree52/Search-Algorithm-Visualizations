@@ -3,7 +3,7 @@ function exponentialSearch(target, A) {
   saveState();
   if (A[0] === target) {
     found(target, 0);
-    return;
+    return 0;
   }
   colorTiles("white", 0, 0);
   saveState();
@@ -18,7 +18,7 @@ function exponentialSearch(target, A) {
     saveState();
     if (A[i] === target) {
       found(target, i);
-      return;
+      return i;
     }
     colorTiles("white", 0, i);
     saveState();
@@ -53,7 +53,7 @@ function exponentialSearch(target, A) {
       rightIndex = pivot - 1;
     } else if (target === A[pivot]) {
       found(target, pivot);
-      return;
+      return pivot;
     } else {
       colorTiles("white", 0, pivot);
       saveState();
@@ -62,5 +62,41 @@ function exponentialSearch(target, A) {
   }
 
   notFound();
-  return;
+  return -1;
+}
+
+// prettier-ignore
+function exponentialCode() {
+  newCodeLine("function exponentialSearch(target, A) {");
+  newCodeLine("&emsp;if (A[0] === target) {");
+  newCodeLine("&emsp;&emsp;return 0;");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;let i = 1;");
+  newCodeLine("&emsp;while (A[i] <= target && i < A.length) {");
+  newCodeLine("&emsp;&emsp;if (A[i] === target) {");
+  newCodeLine("&emsp;&emsp;&emsp;return i;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;i = i * 2;");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;// Binary search:");
+  newCodeLine("&emsp;let leftIndex = i * 0.5 + 1;");
+  newCodeLine("&emsp;let rightIndex = Math.min(i - 1, A.length - 1);");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;while (rightIndex >= leftIndex) {");
+  newCodeLine("&emsp;&emsp;let pivot = leftIndex + Math.floor((rightIndex - leftIndex) / 2);");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;&emsp;if (target < A[pivot]) {");
+  newCodeLine("&emsp;&emsp;&emsp;rightIndex = pivot - 1;");
+  newCodeLine("&emsp;&emsp;} else if (target === A[pivot]) {");
+  newCodeLine("&emsp;&emsp;&emsp;return pivot;");
+  newCodeLine("&emsp;&emsp;} else {");
+  newCodeLine("&emsp;&emsp;&emsp;leftIndex = pivot + 1;");
+  newCodeLine("&emsp;&emsp;}");
+  newCodeLine("&emsp;}");
+  newCodeLine("&nbsp;");
+  newCodeLine("&emsp;return -1;");
+  newCodeLine("}");
 }

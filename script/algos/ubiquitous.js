@@ -7,7 +7,7 @@ function ubiquitousSearch(target, A) {
     colorTiles("lightgreen", pivot, pivot);
     equationHTML(
       0,
-      "$$" +
+      "$$pivot=" +
         leftIndex +
         "-\\left\\lfloor\\frac{" +
         rightIndex +
@@ -33,7 +33,7 @@ function ubiquitousSearch(target, A) {
     }
   }
 
-  definePivot(A, leftIndex, 0, "$$" + leftIndex + "$$");
+  definePivot(A, leftIndex, 0, "$$leftIndex=" + leftIndex + "$$");
   saveState();
   if (A[leftIndex] === target) {
     found(target, leftIndex);
@@ -42,7 +42,7 @@ function ubiquitousSearch(target, A) {
   colorTiles("white", leftIndex, leftIndex);
   saveState();
 
-  definePivot(A, rightIndex, 0, "$$" + rightIndex + "$$");
+  definePivot(A, rightIndex, 0, "$$rightIndex=" + rightIndex + "$$");
   saveState();
   if (A[rightIndex] === target) {
     found(target, rightIndex);

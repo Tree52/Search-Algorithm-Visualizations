@@ -4,13 +4,13 @@ function jumpSearch(target, A) {
   let i = 0;
   for (; A[i] <= target; i += jumpSize) {
     if (i === 0) {
-      definePivot(A, i, 0, "$$0$$");
+      definePivot(A, i, 0, "$$i=0$$");
     } else {
       definePivot(
         A,
         i,
         0,
-        "$$" + (i - jumpSize) + "+" + jumpSize + "=" + i + "$$"
+        "$$i=" + (i - jumpSize) + "+" + jumpSize + "=" + i + "$$"
       );
     }
     saveState();
@@ -27,7 +27,7 @@ function jumpSearch(target, A) {
       A,
       i,
       0,
-      "$$" + (i - jumpSize) + "+" + jumpSize + "=" + i + "$$"
+      "$$i=" + (i - jumpSize) + "+" + jumpSize + "=" + i + "$$"
     );
     saveState();
     colorTiles("white", i, A.length - 1);
@@ -45,14 +45,14 @@ function jumpSearch(target, A) {
         A,
         prevIndex,
         0,
-        "$$" + i + "-" + jumpSize + "+1=" + prevIndex + "$$"
+        "$$prevIndex=" + i + "-" + jumpSize + "+1=" + prevIndex + "$$"
       );
     } else {
       definePivot(
         A,
         prevIndex,
         0,
-        "$$" + (prevIndex - 1) + "+1=" + prevIndex + "$$"
+        "$$prevIndex=" + (prevIndex - 1) + "+1=" + prevIndex + "$$"
       );
     }
     saveState();

@@ -8,7 +8,7 @@ function binarySearch(target, A) {
       A,
       pivot,
       0,
-      "$$" +
+      "$$pivot=" +
         leftIndex +
         "-\\left\\lfloor\\frac{" +
         rightIndex +

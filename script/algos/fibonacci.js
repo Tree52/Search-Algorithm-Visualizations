@@ -17,7 +17,7 @@ function fibonacciSearch(target, A) {
       A,
       pivot,
       0,
-      "$$min\\left \\{" +
+      "$$pivot=min\\left \\{" +
         eliminatedFrontIndex +
         "+" +
         fibA +
@@ -53,7 +53,7 @@ function fibonacciSearch(target, A) {
   // Examples:
   // target = 0, A = [0]. "Target is not in Aay."
   // target = 2, A = [0, 1, 2]. "Target is not in Aay."
-  definePivot(A, A.length - 1, 0, "$$" + (A.length - 1) + "$$");
+  definePivot(A, A.length - 1, 0, "$$A.length-1=" + (A.length - 1) + "$$");
   saveState();
   if (A[A.length - 1] === target) {
     found(target, A.length - 1);

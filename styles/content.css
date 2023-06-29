@@ -90,15 +90,10 @@
   font-size: 20px;
 }
 
-.title,
-.equation {
-  display: none;
+#codeTitle, .equation {
+  display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#codeTitle {
-  display: flex;
 }
 
 .equation {

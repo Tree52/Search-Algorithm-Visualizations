@@ -127,54 +127,42 @@ function go() {
   switch (algorithm) {
     case "Binary Search":
       binaryCode();
-      showTitle(0, "pivot:");
       binarySearch(Number(targetAsString), sortedArr);
       break;
     case "Exponential Search":
       exponentialCode();
-      showTitle(0, "pivot:");
       exponentialSearch(Number(targetAsString), sortedArr);
       break;
     case "Fibonacci Search":
       fibonacciCode();
-      showTitle(0, "pivot:");
       fibonacciSearch(Number(targetAsString), sortedArr);
       break;
     case "Interpolation Search":
       interpolationCode();
-      showTitle(0, "pivot:");
       interpolationSearch(Number(targetAsString), sortedArr);
       break;
     case "Jump Search":
       jumpCode();
-      showTitle(0, "pivot:");
       jumpSearch(Number(targetAsString), sortedArr);
       break;
     case "Linear Search":
       linearCode();
-      showTitle(0, "i:");
       linearSearch(Number(targetAsString), arr);
       break;
     case "Meta Search":
       metaCode();
-      showTitle(0, "cutoff:");
-      showTitle(1, "cutoffCandidate:");
       metaSearch(Number(targetAsString), sortedArr);
       break;
     case "Sentinel Search":
       sentinelCode();
-      showTitle(0, "i:");
       sentinelSearch(Number(targetAsString), arr);
       break;
     case "Ternary Search":
       ternaryCode();
-      showTitle(0, "pivot1:");
-      showTitle(1, "pivot2:");
       ternarySearch(Number(targetAsString), sortedArr);
       break;
     case "Ubiquitous Search":
       ubiquitousCode();
-      showTitle(0, "(Ubiquitous) pivot:");
       ubiquitousSearch(Number(targetAsString), sortedArr);
       break;
   }
@@ -189,11 +177,6 @@ function clearDiv(id) {
 
 function reset() {
   clearDiv("code");
-
-  hideElement("title0");
-  hideElement("equation0");
-  hideElement("title1");
-  hideElement("equation1");
 
   hideElement("reset");
   hideElement("left");
@@ -263,12 +246,6 @@ function definePivot(myArr, pivotIndex, equationIDNum, equation) {
   document.getElementById("tile" + pivotIndex).firstChild.data =
     myArr[pivotIndex];
   equationHTML(equationIDNum, equation);
-}
-
-function showTitle(idNum, title) {
-  document.getElementById("title" + idNum).innerHTML = title;
-  displayFlexElement("title" + idNum);
-  displayFlexElement("equation" + idNum);
 }
 
 function loadState0() {

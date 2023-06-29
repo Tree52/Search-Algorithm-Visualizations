@@ -11,9 +11,9 @@ function exponentialSearch(target, A) {
   let i = 1;
   while (A[i] <= target && i < A.length) {
     if (i === 1) {
-      definePivot(A, i, 0, "$$1$$");
+      definePivot(A, i, 0, "$$i=1$$");
     } else {
-      definePivot(A, i, 0, "$$" + i / 2 + "*2=" + i + "$$");
+      definePivot(A, i, 0, "$$i=" + i / 2 + "*2=" + i + "$$");
     }
     saveState();
     if (A[i] === target) {
@@ -35,7 +35,7 @@ function exponentialSearch(target, A) {
       A,
       pivot,
       0,
-      "$$" +
+      "$$pivot=" +
         leftIndex +
         "-\\left\\lfloor\\frac{" +
         rightIndex +

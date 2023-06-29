@@ -10,7 +10,7 @@ function ternarySearch(target, A) {
       A,
       pivot1,
       0,
-      "$$" +
+      "$$pivot1=" +
         leftIndex +
         "+\\left\\lfloor\\frac{" +
         rightIndex +
@@ -24,7 +24,7 @@ function ternarySearch(target, A) {
       A,
       pivot2,
       1,
-      "$$" +
+      "$$pivot2=" +
         rightIndex +
         "-\\left\\lfloor\\frac{" +
         rightIndex +

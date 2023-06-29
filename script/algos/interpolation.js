@@ -13,7 +13,7 @@ function interpolationSearch(target, A) {
     target <= A[rightIndex]
   ) {
     if (leftIndex === rightIndex) {
-      definePivot(A, leftIndex, 0, "$$" + leftIndex + "$$");
+      definePivot(A, leftIndex, 0, "$$left/rightIndex=" + leftIndex + "$$");
       saveState();
       if (A[leftIndex] === target) {
         found(target, leftIndex);
@@ -36,7 +36,7 @@ function interpolationSearch(target, A) {
       A,
       pivot,
       0,
-      "$$" +
+      "$$pivot=" +
         leftIndex +
         "+\\left\\lfloor\\frac{(" +
         target +

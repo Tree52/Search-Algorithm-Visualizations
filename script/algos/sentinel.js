@@ -10,7 +10,7 @@ function sentinelSearch(target, A) {
   saveState();
 
   let i = 0;
-  definePivot(A, i, 0, "$$0$$");
+  definePivot(A, i, 0, "$$i=0$$");
   // colorCodeLine(5);
   saveState();
   while (A[i] !== target) {
@@ -18,7 +18,7 @@ function sentinelSearch(target, A) {
     // colorCodeLine(6);
     saveState();
     i++;
-    definePivot(A, i, 0, "$$" + (i - 1) + "+1=" + i + "$$");
+    definePivot(A, i, 0, "$$i=" + (i - 1) + "+1=" + i + "$$");
     // colorCodeLine(5);
     saveState();
   }
@@ -32,7 +32,7 @@ function sentinelSearch(target, A) {
   saveState();
 
   if (i === A.length - 1) {
-    definePivot(A, i, 0, "$$" + (i - 1) + "+1=" + i + "$$");
+    definePivot(A, i, 0, "$$i=" + (i - 1) + "+1=" + i + "$$");
     saveState();
   }
 

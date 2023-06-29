@@ -9,7 +9,7 @@ function metaSearch(target, A) {
 
   let cutoff = 0;
   for (let i = numBitsNeededForMaxIndex - 1; i >= 0; i--) {
-    definePivot(A, cutoff, 0, "$$" + cutoff + "$$");
+    definePivot(A, cutoff, 0, "$$cutoff=" + cutoff + "$$");
     saveState();
     if (A[cutoff] === target) {
       found(target, cutoff);
@@ -19,7 +19,7 @@ function metaSearch(target, A) {
     saveState();
 
     let cutoffCandidate = cutoff | (1 << i);
-    equationHTML(1, "$$" + cutoff + "+2^{" + i + "}=" + cutoffCandidate + "$$");
+    equationHTML(1, "$$cutoffCandidate=" + cutoff + "+2^{" + i + "}=" + cutoffCandidate + "$$");
 
     if (cutoffCandidate < A.length) {
       colorTiles("lightgreen", cutoffCandidate, cutoffCandidate);
@@ -39,7 +39,7 @@ function metaSearch(target, A) {
     saveState();
   }
 
-  definePivot(A, cutoff, 0, "$$" + cutoff + "$$");
+  definePivot(A, cutoff, 0, "$$cutoff=" + cutoff + "$$");
   saveState();
   if (A[cutoff] === target) {
     found(target, cutoff);

@@ -90,7 +90,8 @@
   font-size: 20px;
 }
 
-#codeTitle, .equation {
+#codeTitle,
+.equation {
   display: flex;
   justify-content: center;
   align-items: center;

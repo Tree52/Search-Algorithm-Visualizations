@@ -25,6 +25,13 @@ function exponentialSearch(target, A) {
     i = i * 2;
   }
 
+  if (i < A.length) {
+    definePivot(A, i, 0, "$$i=" + i / 2 + "*2=" + i + "$$");
+    saveState();
+    colorTiles("white", i, A.length - 1);
+    saveState();
+  }
+
   // Binary search:
   let leftIndex = i * 0.5 + 1;
   let rightIndex = Math.min(i - 1, A.length - 1);

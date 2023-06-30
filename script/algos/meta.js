@@ -19,7 +19,10 @@ function metaSearch(target, A) {
     saveState();
 
     let cutoffCandidate = cutoff | (1 << i);
-    equationHTML(1, "$$cutoffCandidate=" + cutoff + "+2^{" + i + "}=" + cutoffCandidate + "$$");
+    equationHTML(
+      1,
+      "$$cutoffCandidate=" + cutoff + "+2^{" + i + "}=" + cutoffCandidate + "$$"
+    );
 
     if (cutoffCandidate < A.length) {
       colorTiles("lightgreen", cutoffCandidate, cutoffCandidate);

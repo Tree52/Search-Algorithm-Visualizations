@@ -54,7 +54,7 @@
 	aria-label="Array input: number comma number comma etc."
 	onkeydown={handleKeydown}
 />
-<button onclick={push} title="Enter" aria-label="Add array input">
+<button onclick={push} aria-label="Add array input">
 	+
 	<span style="margin-left: .5rem;">Enter</span>
 </button>

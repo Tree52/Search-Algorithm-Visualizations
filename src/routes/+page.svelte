@@ -5,6 +5,10 @@
 	import "../global.scss";
 </script>
 
+<svelte:head>
+	<title>Search Algorithm Visualizations</title>
+</svelte:head>
+
 <Header />
 <Content />
 <Footer />

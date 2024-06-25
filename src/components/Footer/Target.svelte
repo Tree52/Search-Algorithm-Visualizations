@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { sanitizeInput } from "$lib/utils";
 	import { target } from "$lib/refs.svelte";
-	let targetSanitized: string = $derived(target.value.replace(/[^0-9-]/g, ""));
 </script>
 
 <input
@@ -9,7 +9,7 @@
 	inputmode="numeric"
 	placeholder="&#xf140"
 	bind:value={target.value}
-	oninput={() => (target.value = targetSanitized)}
+	oninput={() => (target.value = sanitizeInput(target.value, "0-9-"))}
 	aria-label="Algorithm target number"
 />
 

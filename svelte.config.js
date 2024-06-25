@@ -11,6 +11,11 @@ const config = {
 		}
 	},
 
+	onwarn: (warning, handler) => {
+		if (warning.code === "css-unused-selector") return;
+		handler(warning);
+	},
+
 	preprocess: preprocess({
 		scss: {
 			includePaths: ["src"]

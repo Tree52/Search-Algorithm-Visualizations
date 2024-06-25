@@ -48,3 +48,8 @@ export function mergeSort(array: number[]): number[] {
 
 	return merge(mergeSort(leftArray), mergeSort(rightArray));
 }
+
+export function sanitizeInput(s: string, allowedChars: string): string {
+	const regex = new RegExp(`[^${allowedChars}]`, "g");
+	return s.replace(regex, "");
+}

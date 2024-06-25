@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { getRandomIntBetween, stringToNumberArray } from "$lib/utils";
+	import { getRandomIntBetween, stringToNumberArray, sanitizeInput } from "$lib/utils";
 	import { steps } from "$lib/refs.svelte";
+
 	let arrayInput = $state("");
-	let arrayInputSanitized: string = $derived(arrayInput.replace(/[^0-9, -]/g, ""));
 
 	function createStep0TileColors() {
 		steps.value[0].tileColors = [];
@@ -50,7 +50,7 @@
 	type="text"
 	placeholder="#, #, ..."
 	bind:value={arrayInput}
-	oninput={() => (arrayInput = arrayInputSanitized)}
+	oninput={() => (arrayInput = sanitizeInput(arrayInput, "0-9, -"))}
 	aria-label="Array input: number comma number comma etc."
 	onkeydown={handleKeydown}
 />

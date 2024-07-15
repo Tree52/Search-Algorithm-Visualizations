@@ -1,0 +1,1 @@
+import{s,g as n,a as u}from"./runtime.fzMmQ1dr.js";function i(r){var e=u(0);return function(){return arguments.length===1?(s(e,n(e)+1),arguments[0]):(n(e),r())}}function l(r){var t;var e=(t=r.$$slots)==null?void 0:t.default;return e===!0?r.children:e}export{l as d,i as r};

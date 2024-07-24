@@ -6,7 +6,11 @@
 
 <main>
 	{#each steps.value[stepsIndexer.value].tileContents as tileContent, i}
-		<Tile tileIndex={i} {tileContent} tileColor={steps.value[stepsIndexer.value].tileColors[i]} />
+		<Tile
+			tileIndex={i}
+			{tileContent}
+			--tile-color={steps.value[stepsIndexer.value].tileColors[i]}
+		/>
 	{/each}
 
 	<div>
@@ -31,7 +35,7 @@
 		}
 	}
 
-	main :global {
+	main:global {
 		div {
 			@include center-div;
 			height: var(--tile-height);

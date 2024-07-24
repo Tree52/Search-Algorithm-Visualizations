@@ -15,9 +15,9 @@
 			<Go />
 			<Target />
 		{:else}
-			<button style="visibility: hidden"></button>
-			<button style="visibility: hidden"></button>
-			<button style="visibility: hidden"></button>
+			<button style:visibility="hidden"></button>
+			<button style:visibility="hidden"></button>
+			<button style:visibility="hidden"></button>
 		{/if}
 	{:else}
 		<LeftRightReset />
@@ -33,7 +33,7 @@
 		justify-content: center;
 	}
 
-	footer :global {
+	footer:global {
 		button,
 		input {
 			border: none;

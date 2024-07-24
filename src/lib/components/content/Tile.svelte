@@ -2,13 +2,12 @@
 	type tileProps = {
 		tileIndex: number;
 		tileContent: number | null;
-		tileColor: string;
 	};
 
-	const { tileIndex, tileContent, tileColor }: tileProps = $props();
+	const { tileIndex, tileContent }: tileProps = $props();
 </script>
 
-<div style="background-color: {tileColor}" tabindex="-1">
+<div style:background-color="var(--tile-color)" tabindex="-1">
 	{tileContent}
 	<div>
 		{tileIndex}

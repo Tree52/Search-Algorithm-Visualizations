@@ -44,10 +44,10 @@
 {#if steps.value[0].tileContents.length > 0}
 	<button onclick={pop} aria-label="Remove array input">
 		-
-		<span style="margin-left: -.8rem;">Shift + Enter</span>
+		<span style:margin-left="-.8rem">Shift + Enter</span>
 	</button>
 {:else}
-	<button style="visibility: hidden"></button>
+	<button style:visibility="hidden"></button>
 {/if}
 <input
 	class="fa-solid"
@@ -62,7 +62,7 @@
 />
 <button onclick={push} aria-label="Add array input">
 	+
-	<span style="margin-left: .5rem;">Enter</span>
+	<span style:margin-left=".5rem">Enter</span>
 </button>
 
 <style lang="scss">

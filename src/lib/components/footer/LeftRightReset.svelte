@@ -23,7 +23,7 @@
 		aria-label="Left arrow"
 	></button>
 {:else}
-	<button style="visibility: hidden"></button>
+	<button style:visibility="hidden"></button>
 {/if}
 {#if stepsIndexer.value !== steps.value.length - 1}
 	<button
@@ -34,7 +34,7 @@
 		aria-label="Right arrow"
 	></button>
 {:else}
-	<button style="visibility: hidden"></button>
+	<button style:visibility="hidden"></button>
 {/if}
 <button class="fa-solid fa-rotate-right" onclick={reset} aria-label="Reset footer"></button>
 

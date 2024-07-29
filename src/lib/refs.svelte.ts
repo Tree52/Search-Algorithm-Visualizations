@@ -8,7 +8,7 @@ type Step = {
 };
 
 type Ref<T> = {
-	value: T;
+	v: T;
 	reset: () => void;
 };
 
@@ -16,13 +16,13 @@ const deepCopy = (obj: object): object => JSON.parse(JSON.stringify(obj));
 
 function ref<T>(initial: T): Ref<T> {
 	const isObj: boolean = typeof initial === "object" ? true : false;
-	let value: T = $state(isObj ? (deepCopy(initial!) as T) : initial);
-	const reset = (): T => (value = isObj ? (deepCopy(initial!) as T) : initial);
+	let v: T = $state(isObj ? (deepCopy(initial!) as T) : initial);
+	const reset = (): T => (v = isObj ? (deepCopy(initial!) as T) : initial);
 
 	// prettier-ignore
 	return {
-    get value(): T { return value; },
-    set value(v: T) { value = v; },
+    get v(): T { return v; },
+    set v(value: T) { v = value; },
     reset
   };
 }

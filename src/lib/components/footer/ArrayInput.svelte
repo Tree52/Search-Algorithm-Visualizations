@@ -5,20 +5,20 @@
 	let arrayInput = $state("");
 
 	function createStep0TileColors(): void {
-		steps.value[0].tileColors = [];
-		for (let i: number = 0; i < steps.value[0].tileContents.length; i++) {
-			steps.value[0].tileColors[i] = "var(--secondary-color)";
+		steps.v[0].tileColors = [];
+		for (let i: number = 0; i < steps.v[0].tileContents.length; i++) {
+			steps.v[0].tileColors[i] = "var(--secondary-color)";
 		}
 	}
 
 	function pop(): void {
 		if (arrayInput === "") {
-			steps.value[0].tileContents.pop();
+			steps.v[0].tileContents.pop();
 		} else {
 			const toRemove: number[] = stringToNumberArray(arrayInput);
 			for (let i: number = 0; i < toRemove.length; i++) {
-				const index: number = steps.value[0].tileContents.indexOf(toRemove[i]);
-				if (index !== -1) steps.value[0].tileContents.splice(index, 1);
+				const index: number = steps.v[0].tileContents.indexOf(toRemove[i]);
+				if (index !== -1) steps.v[0].tileContents.splice(index, 1);
 			}
 		}
 		createStep0TileColors();
@@ -26,9 +26,9 @@
 
 	function push(): void {
 		if (arrayInput === "") {
-			steps.value[0].tileContents.push(getRandomIntBetween(-9, 99));
+			steps.v[0].tileContents.push(getRandomIntBetween(-9, 99));
 		} else {
-			steps.value[0].tileContents.push(...stringToNumberArray(arrayInput));
+			steps.v[0].tileContents.push(...stringToNumberArray(arrayInput));
 		}
 		createStep0TileColors();
 	}
@@ -41,7 +41,7 @@
 	}
 </script>
 
-{#if steps.value[0].tileContents.length > 0}
+{#if steps.v[0].tileContents.length > 0}
 	<button onclick={pop} aria-label="Remove array input">
 		-
 		<span style:margin-left="-.8rem">Shift + Enter</span>

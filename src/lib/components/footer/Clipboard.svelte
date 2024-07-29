@@ -2,7 +2,7 @@
 	import { steps } from "$lib/refs.svelte";
 
 	function copyToClipboard(): void {
-		navigator.clipboard.writeText(steps.value[0].tileContents.join(", "));
+		navigator.clipboard.writeText(steps.v[0].tileContents.join(", "));
 		alert("Array copied to clipboard");
 	}
 </script>

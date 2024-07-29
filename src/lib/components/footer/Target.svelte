@@ -6,9 +6,9 @@
 <input
 	class="fa-solid"
 	placeholder="&#xf140"
-	bind:value={target.value}
+	bind:value={target.v}
 	oninput={(): void => {
-		target.value = sanitizeInput(target.value, "0-9-");
+		target.v = sanitizeInput(target.v, "0-9-");
 	}}
 	aria-label="Algorithm target number"
 />

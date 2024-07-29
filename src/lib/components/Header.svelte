@@ -3,18 +3,18 @@
 	import { algorithm, steps } from "$lib/refs.svelte";
 </script>
 
-{#if steps.value.length === 1}
+{#if steps.v.length === 1}
 	<header aria-label="Header algorithms checklist">
 		<div>
 			{#each Object.keys(unsortedAlgos) as key}
-				<input type="radio" name="algorithm" value={key} bind:group={algorithm.value} id={key} />
+				<input type="radio" name="algorithm" value={key} bind:group={algorithm.v} id={key} />
 				<label for={key}>{key}</label>
 			{/each}
 		</div>
 
 		<div>
 			{#each Object.keys(sortedAlgos) as key}
-				<input type="radio" name="algorithm" value={key} bind:group={algorithm.value} id={key} />
+				<input type="radio" name="algorithm" value={key} bind:group={algorithm.v} id={key} />
 				<label for={key}>{key}</label>
 			{/each}
 		</div>

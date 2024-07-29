@@ -8,9 +8,9 @@
 </script>
 
 <footer aria-label="Footer">
-	{#if steps.value.length === 1}
+	{#if steps.v.length === 1}
 		<ArrayInput />
-		{#if steps.value[0].tileContents.length > 0}
+		{#if steps.v[0].tileContents.length > 0}
 			<Clipboard />
 			<Go />
 			<Target />

@@ -3,33 +3,33 @@
 
 	function reset(): void {
 		stepsIndexer.reset();
-		steps.value.splice(1);
+		steps.v.splice(1);
 	}
 </script>
 
 <div>
-	Target:&nbsp;{target.value}
+	Target:&nbsp;{target.v}
 	<br />
-	Visual:&nbsp;{stepsIndexer.value} / {steps.value.length - 1}
+	Visual:&nbsp;{stepsIndexer.v} / {steps.v.length - 1}
 	<br />
-	Algorithm:&nbsp;{algorithm.value}
+	Algorithm:&nbsp;{algorithm.v}
 </div>
-{#if stepsIndexer.value !== 1}
+{#if stepsIndexer.v !== 1}
 	<button
 		class="fa-solid fa-arrow-left"
 		onclick={(): void => {
-			stepsIndexer.value--;
+			stepsIndexer.v--;
 		}}
 		aria-label="Left arrow"
 	></button>
 {:else}
 	<button style:visibility="hidden"></button>
 {/if}
-{#if stepsIndexer.value !== steps.value.length - 1}
+{#if stepsIndexer.v !== steps.v.length - 1}
 	<button
 		class="fa-solid fa-arrow-right"
 		onclick={(): void => {
-			stepsIndexer.value++;
+			stepsIndexer.v++;
 		}}
 		aria-label="Right arrow"
 	></button>

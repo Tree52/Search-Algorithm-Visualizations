@@ -5,17 +5,17 @@
 </script>
 
 <main>
-	{#each steps.value[stepsIndexer.value].tileContents as tileContent, i}
+	{#each steps.v[stepsIndexer.v].tileContents as tileContent, i}
 		<Tile
 			tileIndex={i}
 			{tileContent}
-			--tile-color={steps.value[stepsIndexer.value].tileColors[i]}
+			--tile-color={steps.v[stepsIndexer.v].tileColors[i]}
 		/>
 	{/each}
 
 	<div>
-		{steps.value[stepsIndexer.value].resultContent}
-		{#each steps.value[stepsIndexer.value].metaTileContents as tileContent}
+		{steps.v[stepsIndexer.v].resultContent}
+		{#each steps.v[stepsIndexer.v].metaTileContents as tileContent}
 			<EmptyTile {tileContent} />
 		{/each}
 	</div>

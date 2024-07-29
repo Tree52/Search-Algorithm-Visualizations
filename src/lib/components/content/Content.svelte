@@ -6,11 +6,7 @@
 
 <main>
 	{#each steps.v[stepsIndexer.v].tileContents as tileContent, i}
-		<Tile
-			tileIndex={i}
-			{tileContent}
-			--tile-color={steps.v[stepsIndexer.v].tileColors[i]}
-		/>
+		<Tile tileIndex={i} {tileContent} --tile-color={steps.v[stepsIndexer.v].tileColors[i]} />
 	{/each}
 
 	<div>

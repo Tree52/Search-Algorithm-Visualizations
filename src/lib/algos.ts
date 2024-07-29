@@ -1,18 +1,6 @@
-import {
-	colorTile,
-	colorTiles,
-	changeTileContent,
-	revealTile,
-	newEmptyTile,
-	changeEmptyTileContent
-} from "./main";
+import { colorTile, colorTiles, changeTileContent, revealTile, newEmptyTile, changeEmptyTileContent } from "./main";
 
-export type SearchAlgorithm = (
-	target: number,
-	A: number[],
-	leftIndex?: number,
-	rightIndex?: number
-) => number;
+export type SearchAlgorithm = (target: number, A: number[], leftIndex?: number, rightIndex?: number) => number;
 
 const linear: SearchAlgorithm = (target, A) => {
 	for (let i: number = 0; i < A.length; i++) {
@@ -131,11 +119,7 @@ const interpolation: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A
 			return -1;
 		}
 
-		const pivot: number =
-			leftIndex +
-			Math.floor(
-				((target - A[leftIndex]) * (rightIndex - leftIndex)) / (A[rightIndex] - A[leftIndex])
-			);
+		const pivot: number = leftIndex + Math.floor(((target - A[leftIndex]) * (rightIndex - leftIndex)) / (A[rightIndex] - A[leftIndex]));
 
 		colorTile(pivot, "green");
 		if (A[pivot] === target) return pivot;

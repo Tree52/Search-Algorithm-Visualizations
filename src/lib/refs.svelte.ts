@@ -30,6 +30,4 @@ function ref<T>(initial: T): Ref<T> {
 export const algorithm: Ref<string> = ref<string>("Linear");
 export const target: Ref<string> = ref<string>("");
 export const stepsIndexer: Ref<number> = ref<number>(0);
-export const steps: Ref<Step[]> = ref<Step[]>([
-	{ tileColors: [], tileContents: [], resultContent: "", metaTileContents: [] }
-]);
+export const steps: Ref<Step[]> = ref<Step[]>([{ tileColors: [], tileContents: [], resultContent: "", metaTileContents: [] }]);

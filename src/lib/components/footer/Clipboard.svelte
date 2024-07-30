@@ -7,9 +7,4 @@
   }
 </script>
 
-<!-- prettier-ignore -->
-<button
-	class="fa-solid fa-clipboard"
-	onclick={copyToClipboard}
-	aria-label="Copy array to clipboard"
-></button>
+<button class="fa-solid fa-clipboard" onclick={copyToClipboard} aria-label="Copy array to clipboard"></button>

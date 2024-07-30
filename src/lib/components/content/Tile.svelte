@@ -1,10 +1,5 @@
 <script lang="ts">
-  type tileProps = {
-    tileIndex: number;
-    tileContent: number | null;
-  };
-
-  const { tileIndex, tileContent }: tileProps = $props();
+  const { tileIndex, tileContent }: { tileIndex: number; tileContent: number | null } = $props();
 </script>
 
 <div style:background-color="var(--tile-color)" tabindex="-1">

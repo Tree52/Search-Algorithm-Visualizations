@@ -1,13 +1,8 @@
-export function getRandomIntBetween(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+export const getRandomIntBetween = (min: number, max: number): number => Math.floor(Math.random() * (max - min)) + min;
 
-export function stringToNumberArray(input: string): number[] {
-  return input
-    .split(",")
-    .map((str) => parseFloat(str.trim()))
-    .filter((num) => !isNaN(num));
-}
+// prettier-ignore
+export const stringToNumberArray = (input: string): number[] =>
+  input.split(",").map((str) => parseFloat(str.trim())).filter((num) => !isNaN(num));
 
 function merge(left: number[], right: number[]): number[] {
   const sortedArray: number[] = [];

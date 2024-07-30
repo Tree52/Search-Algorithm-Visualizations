@@ -1,9 +1,5 @@
 <script lang="ts">
-  type tileProps = {
-    tileContent: number | null;
-  };
-
-  const { tileContent }: tileProps = $props();
+  const { tileContent }: { tileContent: number | null } = $props();
 </script>
 
 <div tabindex="-1">

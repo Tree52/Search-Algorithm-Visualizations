@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { algorithm, target, stepsIndexer, steps } from "$lib/refs.svelte";
   import { type SearchAlgorithm, unsortedAlgos, sortedAlgos } from "$lib/algos";
+  import { algorithm, target, stepsIndexer, steps } from "$lib/refs.svelte";
   import { finalResult, hideTiles } from "$lib/main";
   import { mergeSort } from "$lib/utils";
 

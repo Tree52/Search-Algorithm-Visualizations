@@ -1,8 +1,8 @@
 <script lang="ts">
   import LeftRightReset from "./LeftRightReset.svelte";
-  import { steps } from "$lib/refs.svelte";
   import ArrayInput from "./ArrayInput.svelte";
   import Clipboard from "./Clipboard.svelte";
+  import { steps } from "$lib/refs.svelte";
   import Target from "./Target.svelte";
   import Go from "./Go.svelte";
 </script>

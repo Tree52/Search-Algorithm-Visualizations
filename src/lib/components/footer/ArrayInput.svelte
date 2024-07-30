@@ -2,19 +2,16 @@
   import { getRandomIntBetween, stringToNumberArray, sanitizeInput } from "$lib/utils";
   import { steps } from "$lib/refs.svelte";
 
-  let arrayInput = $state("");
+  let arrayInput: string = $state("");
 
   function createStep0TileColors(): void {
     steps.v[0].tileColors = [];
-    for (let i: number = 0; i < steps.v[0].tileContents.length; i++) {
-      steps.v[0].tileColors[i] = "var(--secondary-color)";
-    }
+    for (let i: number = 0; i < steps.v[0].tileContents.length; i++) steps.v[0].tileColors[i] = "var(--secondary-color)";
   }
 
   function pop(): void {
-    if (arrayInput === "") {
-      steps.v[0].tileContents.pop();
-    } else {
+    if (arrayInput === "") steps.v[0].tileContents.pop();
+    else {
       const toRemove: number[] = stringToNumberArray(arrayInput);
       for (let i: number = 0; i < toRemove.length; i++) {
         const index: number = steps.v[0].tileContents.indexOf(toRemove[i]);
@@ -25,11 +22,8 @@
   }
 
   function push(): void {
-    if (arrayInput === "") {
-      steps.v[0].tileContents.push(getRandomIntBetween(-9, 99));
-    } else {
-      steps.v[0].tileContents.push(...stringToNumberArray(arrayInput));
-    }
+    if (arrayInput === "") steps.v[0].tileContents.push(getRandomIntBetween(-9, 99));
+    else steps.v[0].tileContents.push(...stringToNumberArray(arrayInput));
     createStep0TileColors();
   }
 
@@ -49,14 +43,13 @@
 {:else}
   <button style:visibility="hidden"></button>
 {/if}
+<!-- prettier-ignore -->
 <input
   class="fa-solid"
   type="text"
   placeholder="#, #, ..."
   bind:value={arrayInput}
-  oninput={(): void => {
-    arrayInput = sanitizeInput(arrayInput, "0-9, -");
-  }}
+  oninput={(): void => { arrayInput = sanitizeInput(arrayInput, "0-9, -"); }}
   aria-label="Array input: number comma number comma etc."
   onkeydown={handleKeydown}
 />

@@ -1,42 +1,36 @@
 <script lang="ts">
   import { stepsIndexer, steps, target, algorithm } from "$lib/refs.svelte";
-
-  function reset(): void {
-    stepsIndexer.reset();
-    steps.v.splice(1);
-  }
 </script>
 
 <div>
-  Target:&nbsp;{target.v}
+  Target: {target.v}
   <br />
-  Visual:&nbsp;{stepsIndexer.v} / {steps.v.length - 1}
+  Visual: {stepsIndexer.v} / {steps.v.length - 1}
   <br />
-  Algorithm:&nbsp;{algorithm.v}
+  Algorithm: {algorithm.v}
 </div>
 {#if stepsIndexer.v !== 1}
+  <!-- prettier-ignore -->
   <button
     class="fa-solid fa-arrow-left"
-    onclick={(): void => {
-      stepsIndexer.v--;
-    }}
+    onclick={(): void => { stepsIndexer.v--; }}
     aria-label="Left arrow"
   ></button>
 {:else}
   <button style:visibility="hidden"></button>
 {/if}
 {#if stepsIndexer.v !== steps.v.length - 1}
+  <!-- prettier-ignore -->
   <button
     class="fa-solid fa-arrow-right"
-    onclick={(): void => {
-      stepsIndexer.v++;
-    }}
+    onclick={(): void => { stepsIndexer.v++; }}
     aria-label="Right arrow"
   ></button>
 {:else}
   <button style:visibility="hidden"></button>
 {/if}
-<button class="fa-solid fa-rotate-right" onclick={reset} aria-label="Reset footer"></button>
+<!-- prettier-ignore -->
+<button class="fa-solid fa-rotate-right" onclick={(): void => { stepsIndexer.reset(); steps.v.splice(1); }} aria-label="Reset footer"></button>
 
 <style lang="scss">
   div {

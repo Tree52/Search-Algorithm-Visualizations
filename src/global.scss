@@ -1,26 +1,26 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
 :root {
-	--button-width: 3rem;
-	--lr-margin: 0px 1px;
-	--primary-color: rgb(18, 18, 18);
-	--secondary-color: rgb(60, 60, 60);
-	--tile-height: 1.2rem;
-	--transition: background-color 0.15s ease-out, color 0.15s ease-out;
+  --button-width: 3rem;
+  --lr-margin: 0px 1px;
+  --primary-color: rgb(18, 18, 18);
+  --secondary-color: rgb(60, 60, 60);
+  --tile-height: 1.2rem;
+  --transition: background-color 0.15s ease-out, color 0.15s ease-out;
 }
 
 html {
-	// prettier-ignore
-	font: bold 36px Arial, Helvetica, sans-serif;
-	height: 100%;
+  // prettier-ignore
+  font: bold 36px Arial, Helvetica, sans-serif;
+  height: 100%;
 
-	body {
-		background-color: var(--primary-color);
-		color: white;
-		display: flex;
-		flex-direction: column;
-		height: inherit;
-		margin: 0;
-		user-select: none;
-	}
+  body {
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    margin: 0;
+    user-select: none;
+  }
 }

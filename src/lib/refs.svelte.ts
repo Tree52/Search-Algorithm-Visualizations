@@ -1,26 +1,26 @@
 type Step = {
-	tileColors: string[];
-	tileContents: (number | null)[];
+  tileColors: string[];
+  tileContents: (number | null)[];
 
-	resultContent: string;
+  resultContent: string;
 
-	metaTileContents: (number | null)[];
+  metaTileContents: (number | null)[];
 };
 
 type Ref<T> = {
-	v: T;
-	reset: () => void;
+  v: T;
+  reset: () => void;
 };
 
 const deepCopy = (obj: object): object => JSON.parse(JSON.stringify(obj));
 
 function ref<T>(initial: T): Ref<T> {
-	const isObj: boolean = typeof initial === "object" ? true : false;
-	let v: T = $state(isObj ? (deepCopy(initial!) as T) : initial);
-	const reset = (): T => (v = isObj ? (deepCopy(initial!) as T) : initial);
+  const isObj: boolean = typeof initial === "object" ? true : false;
+  let v: T = $state(isObj ? (deepCopy(initial!) as T) : initial);
+  const reset = (): T => (v = isObj ? (deepCopy(initial!) as T) : initial);
 
-	// prettier-ignore
-	return {
+  // prettier-ignore
+  return {
     get v(): T { return v; },
     set v(value: T) { v = value; },
     reset

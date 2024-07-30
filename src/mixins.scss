@@ -1,10 +1,10 @@
 @mixin hover-styles {
-	background-color: white;
-	color: var(--secondary-color);
+  background-color: white;
+  color: var(--secondary-color);
 }
 
 @mixin center-div {
-	align-items: center;
-	display: flex;
-	justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

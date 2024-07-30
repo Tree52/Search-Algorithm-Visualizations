@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { steps } from "$lib/refs.svelte";
+  import { steps } from "$lib/refs.svelte";
 
-	function copyToClipboard(): void {
-		navigator.clipboard.writeText(steps.v[0].tileContents.join(", "));
-		alert("Array copied to clipboard");
-	}
+  function copyToClipboard(): void {
+    navigator.clipboard.writeText(steps.v[0].tileContents.join(", "));
+    alert("Array copied to clipboard");
+  }
 </script>
 
 <!-- prettier-ignore -->
